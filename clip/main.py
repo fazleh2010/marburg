@@ -10,7 +10,7 @@ model, preprocess = clip.load("ViT-B/32", device=device)
 
 
 # Path to your image directory
-image_dir = "/home/melahi/code/CLIP/images/"
+image_dir = "/home/melahi/code/marburg/private_images/"
 
 # Supported image extensions
 valid_extensions = ('.jpg', '.jpeg', '.png', '.bmp', '.gif')
