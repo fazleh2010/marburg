@@ -9,14 +9,30 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 model, preprocess = clip.load("ViT-B/32", device=device)
 
 
-# Path to your image directory
+# Path to your image and text directory
 image_dir = "/home/melahi/code/marburg/private_images/"
+text_dir = "/home/melahi/code/marburg/texts/"
+text_file=text_dir+"example.txt"
+
 
 # Supported image extensions
 valid_extensions = ('.jpg', '.jpeg', '.png', '.bmp', '.gif')
 
 image_files = []
-texts=["a diagram", "a dog", "a cat"]
+#texts=["a diagram", "a dog", "a cat"]
+texts=[]
+
+# Open the file in read mode
+with open(text_file, 'r') as file:
+    # Read each line in the file and store it in a list
+    texts = file.readlines()
+
+# Strip the newline characters from each line
+texts = [line.strip() for line in texts]
+
+# Print the resulting list
+print(texts)
+
 
 # Loop through files in the directory
 for filename in os.listdir(image_dir):
