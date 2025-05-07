@@ -1,5 +1,6 @@
 import os
 import torch
+import csv
 from PIL import Image
 import clip
 
@@ -33,7 +34,7 @@ def get_image_files(image_directory, valid_extensions):
     return image_files
 
 
-def process_images_and_texts(image_files, texts, model, preprocess, device):
+def process_images_and_texts(image_files, texts, model, preprocess, device,output_dir):
     """Process the images and texts, compute image-text similarities."""
     for fileName in image_files:
         print(f"Processing: {fileName}")
@@ -51,11 +52,24 @@ def process_images_and_texts(image_files, texts, model, preprocess, device):
 
             # Print probabilities
             index=0
+            content=""
             for probList in probs:
                 print("texts_size:"+str(len(texts))+" probabiltyList:"+str(len(probList)))
+                data = []
                 for prob in probList:
-                    print(str(index)+":"+texts[index]+":"+str(calculate_percentage(prob)))
+                    # print(str(index)+":"+texts[index]+":"+str(calculate_percentage(prob)))
+                    #line=str(index)+","+texts[index]+","+str(prob)+"\n"
+                    data.append([texts[index], prob])
+                    #content+=line
                     index=index+1
+                # Write to a CSV file
+                data.sort(key=lambda x: x[1], reverse=True)
+                for item in data:
+                    print(f"{item[0]}\t{item[1]}")
+                outputfile =output_dir+ os.path.basename(fileName)+".csv"
+                with open(outputfile, "w", newline="") as csv_file:
+                    writer = csv.writer(csv_file)
+                    writer.writerows(data)
 
     return probs
 
@@ -74,6 +88,7 @@ def main():
     # Define directories
     image_dir = "/home/melahi/code/marburg/images/"
     text_dir = "/home/melahi/code/marburg/texts/"
+    output_dir = "/home/melahi/code/marburg/output/"
     text_file = text_dir + "example.txt"
 
     # Supported image extensions
@@ -88,7 +103,7 @@ def main():
     # print("images :", image_files)
 
     # Process images and texts, compute image-text similarities
-    probs = process_images_and_texts(image_files, texts, model, preprocess, device)
+    probs = process_images_and_texts(image_files, texts, model, preprocess, device,output_dir)
 
 
 if __name__ == "__main__":
