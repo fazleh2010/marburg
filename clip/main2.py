@@ -7,6 +7,8 @@ image_dir = "/home/melahi/code/CLIP/images"
 # Supported image extensions
 valid_extensions = ('.jpg', '.jpeg', '.png', '.bmp', '.gif')
 
+image_files = []
+
 # Loop through files in the directory
 for filename in os.listdir(image_dir):
     if filename.lower().endswith(valid_extensions):
@@ -14,5 +16,8 @@ for filename in os.listdir(image_dir):
         try:
             with Image.open(filepath) as img:
                 print(f"{filename}: size={img.size}, mode={img.mode}")
+                image_files.append(filename)
         except Exception as e:
             print(f"Failed to open {filename}: {e}")
+
+print(image_files)
