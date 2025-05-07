@@ -26,7 +26,7 @@ def get_image_files(image_directory, valid_extensions):
             filepath = os.path.join(image_directory, filename)
             try:
                 with Image.open(filepath) as img:
-                    print(f"{filename}: size={img.size}, mode={img.mode}")
+                    # print(f"{filename}: size={img.size}, mode={img.mode}")
                     image_files.append(filepath)  # Store valid image paths
             except Exception as e:
                 print(f"Failed to open {filename}: {e}")
@@ -50,10 +50,17 @@ def process_images_and_texts(image_files, texts, model, preprocess, device):
             probs = logits_per_image.softmax(dim=-1).cpu().numpy()
 
             # Print probabilities
+            index=0
             for probList in probs:
+                print("texts_size:"+str(len(texts))+" probabiltyList:"+str(len(probList)))
                 for prob in probList:
-                    print(prob)
+                    print(str(index)+":"+texts[index]+":"+str(calculate_percentage(prob)))
+                    index=index+1
+
     return probs
+
+def calculate_percentage(total_value):
+    return total_value * 100
 
 
 def main():
@@ -65,7 +72,7 @@ def main():
     model, preprocess = load_clip_model(device)
 
     # Define directories
-    image_dir = "/home/melahi/code/marburg/private_images/"
+    image_dir = "/home/melahi/code/marburg/images/"
     text_dir = "/home/melahi/code/marburg/texts/"
     text_file = text_dir + "example.txt"
 
@@ -74,17 +81,14 @@ def main():
 
     # Read texts from file
     texts = read_text_file(text_file)
-    print("Texts from file:", texts)
+    # print("Texts from file:", texts)
 
     # Get image files
     image_files = get_image_files(image_dir, valid_extensions)
-    print("images :", image_files)
+    # print("images :", image_files)
 
     # Process images and texts, compute image-text similarities
     probs = process_images_and_texts(image_files, texts, model, preprocess, device)
-
-    print("Final texts:", texts)
-    print("Probabilities:", probs)
 
 
 if __name__ == "__main__":

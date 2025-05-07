@@ -1,3 +1,19 @@
-a diagram
-a dog
-a cat
+person
+people
+a boy 
+a girl
+a man 
+a woman 
+boys 
+girls 
+men
+women 
+a horse
+machine
+a signboard 
+an instrument
+ornaments
+a piece of art 
+a painting 
+a diagram 
+a box
