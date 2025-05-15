@@ -55,7 +55,8 @@ def convert_floats(obj):
         return obj
 
 def main():
-    image_dir = "/home/melahi/code/image-data/test_images/"  # <- Replace with your image folder
+    image_dir = "/home/melahi/code/image-data/extracted_images/"  # <- Replace with your image folder
+    output_dir = "/home/melahi/code/image-data/output/"  # <- Replace with your image folder
     query_index = 0                        # <- Replace with index of query image
     top_k = 5                              # <- How many similar images to return
 
@@ -74,21 +75,21 @@ def main():
     similarity_data = {}
     for index, filename in enumerate(filenames):
         print(index, filename)
-        #print(f"Finding top {top_k} similar images to: {filenames[query_index]}")
+        print(f"Finding top {top_k} similar images to: {filenames[query_index]}")
         similar_images = find_similar_images(features, filenames, query_index, top_k)
         query_index = query_index +1
         list={}
         for name, score in similar_images:
-            #print(f"{name}: similarity = {score:.4f}")
+            print(f"{name}: similarity = {score:.4f}")
             list[name]=str(score)
             similarity_data[filename]=list
-    print(similarity_data)
+    #print(similarity_data)
 
     # Perform conversion
     #clean_data = convert_floats(similarity_data)
 
     # Save it to a JSON file
-    with open(image_dir+"image_similarity_dict.json", "w") as f:
+    with open(output_dir+"image_similarity_dict.json", "w") as f:
         json.dump(similarity_data, f, indent=4)
     #print(f"Finding top {top_k} similar images to: {filenames[query_index]}")
     #similar_images = find_similar_images(features, filenames, query_index, top_k)
