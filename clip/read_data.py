@@ -1,7 +1,8 @@
 import json
 import langcodes
+import os
 
-def read_language_from_json(json_path,lang_path):
+def read_language_from_json(input_path,output_path,json_path,lang_path):
     with open(json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
@@ -47,8 +48,16 @@ def read_language_from_json(json_path,lang_path):
             italian_files = italian_files + 1
         elif file_language == 'Unknown Language':
             unknown_files = unknown_files + 1
-
+        # Original file path and name
+        print(file_name)
+        old_file = file_name
+        # New file path and name
+        new_file = file_language+"_"+file_name
+        # Rename the file
+        os.rename(input_path + old_file, output_path + new_file)
+        print(f'Renamed: {input_path + old_file} → {input_path + new_file}')
         #print(f"\n File: {file_name}"+" language::"+file_language)
+
     language_codes = set(languages)
     print(language_codes)
     print("english files::"+str(english_files)+ " german_files::" + str(german_files)
@@ -56,13 +65,16 @@ def read_language_from_json(json_path,lang_path):
           +" italian_files::" + str(italian_files)
           +" unknown_files::" + str(unknown_files))
 
+
     with open(lang_path, "w") as f:
         json.dump(my_hash, f, indent=2)
 
 def main():
+    input_path = "/home/melahi/code/image-data/pdfs/"  # Replace with your actual path
+    output_path = "/home/melahi/code/image-data/language/"  # Replace with your actual path
     json_path = "/home/melahi/code/image-data/output/pdf_data.json"  # Replace with your actual path
     lang_path = "/home/melahi/code/image-data/output/file_language.json"  # Replace with your actual path
-    read_language_from_json(json_path,lang_path)
+    read_language_from_json(input_path,output_path,json_path,lang_path)
 
 if __name__ == "__main__":
     main()
