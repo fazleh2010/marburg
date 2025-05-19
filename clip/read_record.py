@@ -35,15 +35,14 @@ def main():
 
     # Print each record
     first_5 = []
-    index = 0
     for i, record in enumerate(all_records, 1):
         print(f"--- Record {i} ---\n{record}\n")
         first_5.append(record)
 
-    # print(first_5)
+    print(first_5)
     # Save to JSON
-    #with open(output_json, 'w') as json_file:
-    #    json.dump(first_5, json_file, indent=4)
+    with open(output_json, 'w') as json_file:
+        json.dump(first_5, json_file, indent=4)
 
     #print(f"\nFirst 5 records saved to '{output_json}'")
 
