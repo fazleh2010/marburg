@@ -80,13 +80,14 @@
                         <li class="box clickable-box"><a class="box-link" href="http://localhost:8000/audio/">Audio</a></li>
                         <li class="box clickable-box"><a class="box-link" href="http://localhost:8000/video/">Video</a></li>
                         <li class="box clickable-box"><a class="box-link" href="http://localhost:8000/book/">Book</a></li>
-                        <li class="box clickable-box"><a class="box-link" href="http://localhost:8000/graph_database/">Graph Database</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="http://localhost:7474/browser/">Graph Database</a></li>
                     </ul>
                 </li>
                 <li class="box clickable-box"><a class="box-link" href="http://localhost:8000/visual_art/">Visual Art</a></li>
                 <li class="box clickable-box"><a class="box-link" href="http://localhost:8000/audio/">Audio</a></li>
                 <li class="box clickable-box"><a class="box-link" href="http://localhost:8000/video/">Video</a></li>
-                <li class="box clickable-box"><a class="box-link" href="http://localhost:8000/graph_database/">Graph Database</a></li>
+                <li class="box clickable-box"><a class="box-link" href="http://localhost:8000/book/">Book</a></li>
+                <li class="box clickable-box"><a class="box-link" href="http://localhost:7474/browser/">Graph Database</a></li>
 
 
                 <li class="secondary submenu collapsed">
@@ -277,7 +278,7 @@
                     <li class="film"><a href="http://localhost:8000/audio/">Audio</a></li>
                     <li class="music"><a href="http://localhost:8000/video/">Video</a></li>
                     <li class="music"><a href="http://localhost:8000/book/">Book</a></li>
-                    <li class="music"><a href="http://localhost:8000/graph_database/">Graph Database</a></li>
+                    <li class="music"><a href="http://localhost:7474/browser/">Graph Database</a></li>
                 </ul>
             </nav>
 
