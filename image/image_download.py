@@ -21,8 +21,8 @@ def download_image(image_url, save_path):
 
 
 # Example usage
-image_dir = "/home/melahi/code/marburg/images/"
-text_dir = "/home/melahi/code/marburg/texts/"
+image_dir = "/images/"
+text_dir = "/texts/"
 text_file = text_dir + "image_links.txt"
 
 url_text_files = read_text_file(text_file)

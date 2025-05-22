@@ -12,7 +12,7 @@ driver = GraphDatabase.driver(uri, auth=(username, password))
 
 @app.route("/")
 def index():
-    return render_template("index2.html")
+    return render_template("index.html")
 
 
 @app.route("/query", methods=["POST"])
