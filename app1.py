@@ -23,13 +23,9 @@ def nodes():
     data = get_nodes()
     return jsonify(data)
 
-@app.route('/sections/')
-def sections():
-    return render_template('sections.html')  # or any logic here
-
 @app.route('/visual_art')
 def visual_art():
-    return render_template("visual_art.html")
+    return render_template("Archive.html")
 
 @app.route('/audio')
 def audio():
@@ -43,7 +39,29 @@ def video():
 def book():
     return render_template("book.html")
 
+@app.route('/about/context-project/')
+def context_project():
+    return render_template('context_project.html')
 
+@app.route('/about/history-of-romarchive/')
+def history_of_romarchive():
+    return render_template('history_of_romarchive.html')
+
+@app.route('/about/curators/')
+def curators():
+    return render_template('curators.html')
+
+@app.route('/about/ethical-guidelines/')
+def ethical_guidelines():
+    return render_template('ethical_guidelines.html')
+
+@app.route('/about/collection-policy/')
+def collection_policy():
+    return render_template('collection_policy.html')
+
+@app.route('/about/frequently-answered-questions/')
+def faq():
+    return render_template('faq.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
