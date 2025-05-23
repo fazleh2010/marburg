@@ -43,6 +43,33 @@ def video():
 def book():
     return render_template("book.html")
 
+@app.route('/about/')
+def about():
+    return render_template('about.html')
+
+@app.route('/context-project/')
+def context_project():
+    return render_template('context_project.html')
+
+@app.route('/history-of-romarchive/')
+def history_of_romarchive():
+    return render_template('history_of_romarchive.html')
+
+@app.route('/curators/')
+def curators():
+    return render_template('curators.html')
+
+@app.route('/ethical-guidelines/')
+def ethical_guidelines():
+    return render_template('ethical_guidelines.html')
+
+@app.route('/collection-policy/')
+def collection_policy():
+    return render_template('collection_policy.html')
+
+@app.route('/faq/')
+def faq():
+    return render_template('faq.html')
 
 
 if __name__ == "__main__":
