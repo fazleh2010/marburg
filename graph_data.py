@@ -26,7 +26,7 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/query", methods=["GET", "POST"])
+@app.route("/visual_art/Archive", methods=["GET", "POST"])
 def query():
     keys, records, error, submitted_query = [], [], None, ""
 
@@ -34,7 +34,7 @@ def query():
         submitted_query = request.form.get("cypher_query")
         keys, records, error = run_cypher_query(submitted_query)
 
-    return render_template("query.html", keys=keys, records=records, error=error, query=submitted_query)
+    return render_template("/visual_art/Archive.html", keys=keys, records=records, error=error, query=submitted_query)
 
 
 if __name__ == "__main__":
