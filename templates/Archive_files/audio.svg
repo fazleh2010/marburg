@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path d="M0,9.83522727 L6.61764706,9.83522727 L14.8897059,1.3125 L14.8897059,28.5852273 L6.61764706,20.0625 L0,20.0625 L0,9.83522727 Z M12.2039,8.01183894 L8.09980358,13.0604677 L3.14954718,13.0604677 L3.14954718,17.0759503 L8.09996098,17.0759503 L12.2039,21.9155574 L12.2039,8.01183894 Z M22.3345588,14.9488636 C22.3345588,11.9318182 20.6470588,9.34090909 18.1985294,8.07954545 L18.1985294,21.8011364 C20.6470588,20.5568182 22.3345588,17.9659091 22.3345588,14.9488636 Z M18.1985294,0 L18.1985294,3.51136364 C22.9797794,4.97727273 26.4705882,9.54545455 26.4705882,14.9488636 C26.4705882,20.3522727 22.9797794,24.9204545 18.1985294,26.3863636 L18.1985294,29.8977273 C24.8327206,28.3465909 29.7794118,22.2443182 29.7794118,14.9488636 C29.7794118,7.65340909 24.8327206,1.55113636 18.1985294,0 Z" id="path-1"></path>
+    </defs>
+    <g id="A-/-Icons-/-ItemBundle-/-Audio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Colors-/--Tranzparent" fill="#FDFDFD" fill-opacity="0">
+            <rect id="Color-Rectangle" x="0" y="0" width="44" height="44"></rect>
+        </g>
+        <g id="Icon-Color" transform="translate(7.000000, 7.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Colors-/-RA-Black" mask="url(#mask-2)" fill="#000000">
+                <g transform="translate(-4.411765, -5.454545)" id="Color-Rectangle">
+                    <rect x="0" y="0" width="39" height="40"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
