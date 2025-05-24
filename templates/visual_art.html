@@ -38,20 +38,23 @@
     <header class="site">
         <a id="header-logo" href=" http://localhost:8000/en/">
 
-            <img class="logo" srcset="Archive_files/romarchive-logo-57x37-c.png 57w, Archive_files/romarchive-logo-93x60-c.png 93w, Archive_files/romarchive-logo-103x66-c.png 103w" src="Archive_files/romarchive-logo-57x37-c.png">
-
+            <img class="logo" srcset="{{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }} 57w,
+                         {{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }} 93w,
+                         {{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }} 103w"
+                 src="{{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }}" alt="Uni Marburg Logo">
         </a>
 
 
 
-        <h1 id="header-title">Archive</h1>
+        <h1 id="header-title">Antiziganismus und Ambivalenz in Europa</h1>
 
         <div id="header-tools">
-            <a id="search" href=" http://localhost:8000/en/search/"><img src="Archive_files/search.svg" alt="Search"></a>
+            <a id="search" href=href="http://127.0.0.1:5000/search/">
+                <img src="{{ url_for('static', filename='images/search.svg') }}" alt="Search"></a>
 
 
             <div id="hamburger">
-                <img class="hamburger" src="Archive_files/menu-open.svg">
+                <img class="hamburger" src="{{ url_for('static', filename='images/menu-open.svg') }}">
             </div>
         </div>
     </header>
@@ -60,86 +63,67 @@
 
 
 
-        <img class="logo" srcset="Archive_files/romarchive-logo-57x37-w.png 57w, Archive_files/romarchive-logo-93x60-w.png 93w, Archive_files/romarchive-logo-103x66-w.png 103w" src="Archive_files/romarchive-logo-57x37-w.png">
+        <img class="logo" srcset="{{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }} 57w,
+                    {{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }} 93w,
+                    {{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }} 103w"
+               src="{{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }}">
 
 
         <nav class="site">
-            <h1 id="header-title-menu" class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/">RomArchive</a></h1>
+            <h1 id="header-title-menu" class="box clickable-box"><a class="box-link" href="http://127.0.0.1:5000/">Antiziganismus und Ambivalenz in Europa</a></h1>
 
             <ul class="menu">
                 <li class="box clickable-box">
-                    <a class="box-link" href=" http://localhost:8000/en/">Home</a>
+                    <a class="box-link" href="http://127.0.0.1:5000/">Home</a>
                 </li>
                 <li class="submenu collapsed">
                     <div class="box submenu-header clickable-box">
-                        <a class="box-link" href=" http://localhost:8000/en/sections/">Curated sections</a>
-                        <button class="collapse"><img src="Archive_files/open-vertical.svg" alt="collapse"></button>
+                        <a class="box-link" href="http://127.0.0.1:5000/sections/">Curated sections</a>
+                        <button class="collapse"><img src="{{ url_for('static', filename='images/open-vertical.svg') }}" alt="collapse"></button>
                     </div>
                     <ul class="menu">
-
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/politics-photography/">Politics of Photography</a></li>
-
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/visual-arts/">Visual Arts</a></li>
-
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/film/">Film</a></li>
-
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/music/">Music</a></li>
-
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/flamenco/">Flamenco</a></li>
-
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/dance/">Dance</a></li>
-
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/theatre-and-drama/">Theatre and Drama</a></li>
-
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/literature/">Literature</a></li>
-
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/roma-civil-rights-movement/">Roma Civil Rights Movement</a></li>
-
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/voices-of-the-victims/">Voices of the Victims</a></li>
-
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('visual_art') }}">Visual Art</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('audio') }}">Audio</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('video') }}">Video</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('book') }}">Book</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="http://localhost:7474/browser/">Graph Database</a></li> <!-- External URL is fine -->
                     </ul>
                 </li>
-                <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/collection/i/">Archive</a></li>
-                <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/collection/p/">Actors</a></li>
-                <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/tours/">Tours</a></li>
+                <li class="box clickable-box"><a class="box-link" href="{{ url_for('visual_art') }}">Visual Art</a></li>
+                <li class="box clickable-box"><a class="box-link" href="{{ url_for('audio') }}">Audio</a></li>
+                <li class="box clickable-box"><a class="box-link" href="{{ url_for('video') }}">Video</a></li>
+                <li class="box clickable-box"><a class="box-link" href="{{ url_for('book') }}">Book</a></li>
+                <li class="box clickable-box"><a class="box-link" href="http://localhost:7474/browser/">Graph Database</a></li> <!-- External URL is fine -->
+
 
                 <li class="secondary submenu collapsed">
 
 
                     <div class="box submenu-header clickable-box">
-                        <a class="box-link" href=" http://localhost:8000/en/about/">About</a>
-                        <button class="collapse"><img src="Archive_files/open-vertical.svg" alt="collapse"></button>
+                        <a class="box-link" href="{{ url_for('about') }}">About</a>
+                        <button class="collapse"><img src="{{ url_for('static', filename='images/open-vertical.svg') }}" alt="collapse"></button>
                     </div>
 
                     <ul class="menu">
 
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/about/context-project/">Roma: Who Are We?</a></li>
-
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/about/history-of-romarchive/">Idea - Advisory Board - Team</a></li>
-
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/about/curators/">Archive Sections and Curators</a></li>
-
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/about/ethical-guidelines/">RomArchive Ethical Guidelines*</a></li>
-
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/about/collection-policy/">Collection Policy</a></li>
-
-                        <li class="box clickable-box"><a class="box-link" href=" http://localhost:8000/en/about/frequently-answered-questions/">Frequently Asked Questions | FAQ</a></li>
-
+                       <li class="box clickable-box"><a class="box-link" href="{{ url_for('context_project') }}">Roma: Who Are We?</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('history_of_romarchive') }}">Idea - Advisory Board - Team</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('curators') }}">Archive Sections and Curators</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('ethical_guidelines') }}">RomArchive Ethical Guidelines*</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('collection_policy') }}">Collection Policy</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('faq') }}">Frequently Asked Questions | FAQ</a></li>
                     </ul>
                 </li>
-                <li class="box secondary clickable-box"><a class="box-link" href=" http://localhost:8000/en/search/">Search</a></li>
-                <li class="box secondary clickable-box"><a class="box-link" href=" http://localhost:8000/en/terms/">Terms</a></li>
-                <li class="box secondary clickable-box"><a class="box-link" href=" http://localhost:8000/en/contact/">Contact</a></li>
+                <li class="box secondary clickable-box"><a class="box-link" href="{{ url_for('search') }}">Search</a></li>
+                <li class="box secondary clickable-box"><a class="box-link" href="{{ url_for('terms') }}">Terms</a></li>
+                <li class="box secondary clickable-box"><a class="box-link" href="{{ url_for('contact') }}">Contact</a></li>
 
             </ul>
 
             <div class="language-selector">
 
 
-
-
-
-                <a href=" http://localhost:8000/en/collection/i/" hreflang="en"><svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+                <a href="http://127.0.0.1:5000/" hreflang="en"><svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
                         <defs>
                             <path d="M5.12690455,23.7465804 L0.141880336,28.7982954 L0.141880336,18.4091071 C0.0488516495,17.9539311 9.47288506e-16,17.4826705 8.8817842e-16,17 L0,7 C-4.73447626e-16,3.13400675 3.13400675,7.10171439e-16 7,0 L22,0 C25.8659932,-7.10171439e-16 29,3.13400675 29,7 L29,17 C29,20.8659932 25.8659932,24 22,24 L7,24 C6.35123751,24 5.72308855,23.911743 5.12690455,23.7465804 Z" id="language-switcher-path-1"></path>
                         </defs>
@@ -166,7 +150,7 @@
 
 
 
-                <a href=" http://localhost:8000/de/collection/i/" hreflang="de"><svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+                <a href="http://127.0.0.1:5000/de/frontpage/" hreflang="de"><svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
                         <defs>
                             <path d="M5.12690455,23.7465804 L0.141880336,28.7982954 L0.141880336,18.4091071 C0.0488516495,17.9539311 9.47288506e-16,17.4826705 8.8817842e-16,17 L0,7 C-4.73447626e-16,3.13400675 3.13400675,7.10171439e-16 7,0 L22,0 C25.8659932,-7.10171439e-16 29,3.13400675 29,7 L29,17 C29,20.8659932 25.8659932,24 22,24 L7,24 C6.35123751,24 5.72308855,23.911743 5.12690455,23.7465804 Z" id="language-switcher-path-1"></path>
                         </defs>
@@ -193,7 +177,7 @@
 
 
 
-                <a href=" http://localhost:8000/rom/collection/i/" hreflang="rom"><svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+                <a href="http://127.0.0.1:5000/rom/frontpage/" hreflang="rom"><svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
                         <defs>
                             <path d="M5.12690455,23.7465804 L0.141880336,28.7982954 L0.141880336,18.4091071 C0.0488516495,17.9539311 9.47288506e-16,17.4826705 8.8817842e-16,17 L0,7 C-4.73447626e-16,3.13400675 3.13400675,7.10171439e-16 7,0 L22,0 C25.8659932,-7.10171439e-16 29,3.13400675 29,7 L29,17 C29,20.8659932 25.8659932,24 22,24 L7,24 C6.35123751,24 5.72308855,23.911743 5.12690455,23.7465804 Z" id="language-switcher-path-1"></path>
                         </defs>
@@ -232,7 +216,7 @@
             <div>
                 <form class="filters" action="" method="get">
                     <select name="section">
-                        <option value="" selected="selected">Section</option>
+                        <option value="" selected="selected">Painting</option>
 
                         <option value="dance">Dance</option>
 
@@ -257,7 +241,7 @@
                     </select>
 
                     <select name="collection">
-                        <option value="" selected="selected">Collection</option>
+                        <option value="" selected="selected">Author</option>
 
                         <option value="collection-gustav-balazs">Collection Gustav Balazs</option>
 
@@ -292,7 +276,7 @@
                     </select>
 
                     <select name="term">
-                        <option value="" selected="selected">Term</option>
+                        <option value="" selected="selected">Country</option>
 
                         <option value="19th-century">19th century</option>
 
@@ -686,7 +670,7 @@
             <section class="results itembundles">
                 <div class="descendants">
 
-                    <h1>Cypher Query Interface</h1>
+                    <!--h1>Cypher Query Interface</h1>
                     <form method="POST">
                         <label for="cypher_query">Enter Cypher Query:</label><br>
                         <textarea name="cypher_query" required>{{ query }}</textarea><br>
@@ -717,14 +701,7 @@
                     </table>
                     {% endif %}
 
-                    <p><a href="{{ url_for('index') }}">← Back to Home</a></p>
-
-
-
-
-
-
-
+                    <p><a href="{{ url_for('index') }}">← Back to Home</a></p-->
 
 
                     <div class="box thumbnail-box civil-rights itembundle clickable-box">
@@ -733,11 +710,8 @@
 
                             <div class="thumbnail civil-rights no-thumb">
 
-
-
                                 <div class="type-icon civil-rights"><img src="Archive_files/video.svg" alt="video"></div>
                             </div>
-
 
                             <figcaption class="civil-rights">
                                 <p class="name">
@@ -753,13 +727,6 @@
                         </figure>
 
                     </div>
-
-
-
-
-
-
-
 
 
                     <div class="box thumbnail-box theatre itembundle clickable-box">
@@ -790,13 +757,6 @@
                     </div>
 
 
-
-
-
-
-
-
-
                     <div class="box thumbnail-box visual-arts itembundle clickable-box">
 
                         <figure class="itembundle">
@@ -823,12 +783,6 @@
                         </figure>
 
                     </div>
-
-
-
-
-
-
 
 
 
@@ -2180,34 +2134,21 @@
 
     <footer class="site">
 
-
-
-        <div class="footer-title">RomArchive</div>
-
+        <div class="footer-title">Antiziganismus und Ambivalenz in Europa</div>
 
         <nav class="footer">
-
-            <a href=" http://localhost:8000/en/contact/">Contact</a>
-
-            <a href=" http://localhost:8000/en/supporters/">Supporters</a>
-
-            <a href=" http://localhost:8000/en/imprint/">Imprint</a>
-
-            <a href=" http://localhost:8000/en/privacy/">Privacy statement</a>
-
+            <a href="{{ url_for('contact') }}">Contact</a>
+            <a href="{{ url_for('supporters') }}">Supporters</a>
+            <a href="{{ url_for('imprint') }}">Imprint</a>
+            <a href="{{ url_for('privacy') }}">Privacy statement</a>
         </nav>
-
 
     </footer>
 
-
-
-
-    <script src="Archive_files/jquery-3.1.1.min.js"></script>
-
-    <script src="Archive_files/jquery.detect_swipe.js"></script>
-    <script src="Archive_files/helper.js"></script>
-    <script src="Archive_files/main.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.detect_swipe.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/helper.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
     <script>
         document.querySelectorAll('.filters select').forEach(function(element) {

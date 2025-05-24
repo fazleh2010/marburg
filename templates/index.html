@@ -40,7 +40,6 @@
     <header class="site">
         <a id="header-logo" href="http://localhost:8000/">
 
-        <!--img class="logo" srcset="http://localhost:8000/RomArchive_files/Uni_Marburg_Siegel.png 57w, http://localhost:8000/RomArchive_files/Uni_Marburg_Siegel.png 93w, http://localhost:8000/RomArchive_files/Uni_Marburg_Siegel.png 103w" src="http://localhost:8000/RomArchive_files/Uni_Marburg_Siegel.png"-->
             <img class="logo" srcset="{{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }} 57w,
                          {{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }} 93w,
                          {{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }} 103w"
@@ -410,10 +409,10 @@
     <footer class="site">
         <div class="footer-title">Antiziganismus und Ambivalenz in Europa</div>
         <nav class="footer">
-            <a href="http://localhost:8000/contact/">Contact</a>
-            <a href="http://localhost:8000/supporters/">Supporters</a>
-            <a href="http://localhost:8000/imprint/">Imprint</a>
-            <a href="http://localhost:8000/privacy/">Privacy statement</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+            <a href="{{ url_for('supporters') }}">Supporters</a>
+            <a href="{{ url_for('imprint') }}">Imprint</a>
+            <a href="{{ url_for('privacy') }}">Privacy statement</a>
         </nav>
     </footer>
 
