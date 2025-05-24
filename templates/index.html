@@ -76,7 +76,7 @@
                src="{{ url_for('static', filename='RomArchive_files/Uni_Marburg_Siegel.png') }}">
 
         <nav class="site">
-            <h1 id="header-title-menu" class="box clickable-box"><a class="box-link" href="http://127.0.0.1:5000/">Bilderzählung und visuelle Inszenierung antiziganistischer Motive</a></h1>
+            <h1 id="header-title-menu" class="box clickable-box"><a class="box-link" href="http://127.0.0.1:5000/">Antiziganismus und Ambivalenz in Europa</a></h1>
 
             <ul class="menu">
                 <li class="box clickable-box">
@@ -396,7 +396,7 @@
                             technischen Infrastruktur der Forschungsgruppe.
                         </p>
 
-                        <a class="button archive" href="http://localhost:8000/collection/i/">Projekt durchsuchen</a>
+                        <a class="button archive" href="{{ url_for('project_detail') }}">Projekt durchsuchen</a>
 
                     </div>
                 </div>

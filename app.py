@@ -99,6 +99,12 @@ def imprint():
 def privacy():
     return '<h1>Privacy Statement</h1>'
 
+@app.route('/project-detail')
+def project_detail():
+    # You can render a template or just return a string here
+    return "Welcome to the Project Detail page!"
+
+
 
 
 
