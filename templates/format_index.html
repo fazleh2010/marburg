@@ -13,10 +13,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="cleartype" content="on">
 
+    <link href="http://localhost:8000/RomArchive_files/screen.css" rel="stylesheet" type="text/css">
+
     <meta name="google-site-verification" content="5mewDMRKHpmN4nOFNMBcL74PmpSCkHIAstEhMHTHDjk">
 
-    <title>Neo4j Flask App</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/screen.css') }}">
+    <!-- Link multiple JavaScript files -->
 
     <script src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.detect_swipe.js') }}"></script>
@@ -24,12 +25,12 @@
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 
+
     <!--[if lt IE 9]>
 
 		<script src="/static/js/vendor/html5shiv.min.js"></script>
 
 	<![endif]-->
-
 </head>
 
 <body class=" site-page frontpage">
@@ -64,8 +65,6 @@
     </header>
 
     <div id="menu" class="menu">
-
-
 
         <img class="logo" srcset="http://localhost:8000/RomArchive_files/Uni_Marburg_Siegel.png 57w, http://localhost:8000/RomArchive_files/Uni_Marburg_Siegel.png 93w, http://localhost:8000/RomArchive_files/Uni_Marburg_Siegel.png 103w" src="http://localhost:8000/RomArchive_files/Uni_Marburg_Siegel.png">
 
@@ -123,10 +122,6 @@
             </ul>
 
             <div class="language-selector">
-
-
-
-
 
                 <a href="http://localhost:8000/frontpage/" hreflang="en"><svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
                         <defs>
@@ -283,7 +278,7 @@
             <nav class="curatorial-sections">
                 <ul class="menu">
                     <!--li class="visual-arts"><a href="http://localhost:8000/visual_art/Archive.html">Visual Art</a></li-->
-                    <li class="visual-arts"><a href="{{ url_for('visual_art') }}">Visual Art</a></li>
+                    <li class="visual-arts"><a href="{{ url_for('query') }}">Visual Art</a></li>
                     <li class="film"><a href="http://localhost:8000/audio/">Audio</a></li>
                     <li class="music"><a href="http://localhost:8000/video/">Video</a></li>
                     <li class="music"><a href="http://localhost:8000/book/">Book</a></li>

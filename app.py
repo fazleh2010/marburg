@@ -71,6 +71,36 @@ def collection_policy():
 def faq():
     return render_template('faq.html')
 
+@app.route('/search/')
+def search():
+    return render_template('search.html')
+
+@app.route('/terms/')
+def terms():
+    return render_template('terms.html')
+
+@app.route('/contact/')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/collection/politics-of-photography/')
+def politics_of_photography():
+    return render_template('politics_of_photography.html')  # or return some content
+
+@app.route('/supporters/')
+def supporters():
+    return '<h1>Supporters Page</h1>'
+
+@app.route('/imprint/')
+def imprint():
+    return '<h1>Imprint Page</h1>'
+
+@app.route('/privacy/')
+def privacy():
+    return '<h1>Privacy Statement</h1>'
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
