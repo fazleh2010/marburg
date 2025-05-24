@@ -285,9 +285,9 @@
                 <ul class="menu">
                     <!--li class="visual-arts"><a href="http://localhost:8000/visual_art/Archive.html">Visual Art</a></li-->
                     <li class="visual-arts"><a href="{{ url_for('visual_art') }}">Visual Art</a></li>
-                    <li class="film"><a href="http://localhost:8000/audio/">Audio</a></li>
-                    <li class="music"><a href="http://localhost:8000/video/">Video</a></li>
-                    <li class="music"><a href="http://localhost:8000/book/">Book</a></li>
+                    <li class="film"><a href="{{ url_for('audio') }}">Audio</a></li>
+                    <li class="music"><a href="{{ url_for('video') }}">Video</a></li>
+                    <li class="music"><a href="{{ url_for('book') }}">Book</a></li>
                     <li class="music"><a href="http://localhost:7474/browser/">Graph Database</a></li>
                 </ul>
             </nav>
@@ -304,25 +304,30 @@
                             </div>
 
                             <p class="title">
-                                <a href="http://localhost:8000/collection/politics-of-photography/">
+                                <a href="{{ url_for('politics_of_photography') }}">
                                     Antiziganismus und Ambivalenz in Europa
                                 </a>
                             </p>
 
                             <figure class="bundle phone">
-                                <a href="http://localhost:8000/collection/politics-of-photography/">
+                                <a href="{{ url_for('politics_of_photography') }}">
                                     <div class="image-frame">
 
-                                        <img class="landscape" srcset="http://localhost:8000/RomArchive_files/Ambivalenz_in_Europa.jpg 1x, http://localhost:8000/RomArchive_files/c45af89cfc3daf3507e7af1ac43eb6fa.jpg 2x" src="http://localhost:8000/RomArchive_files/Ambivalenz_in_Europa.jpg">
+                                       <img class="landscape"
+                                            srcset="{{ url_for('static', filename='images/Ambivalenz_in_Europa.jpg') }} 1x,
+                                                   {{ url_for('static', filename='images/Ambivalenz_in_Europa.jpg') }} 2x"
+                                            src="{{ url_for('static', filename='images/Ambivalenz_in_Europa.jpg') }}"
+                                            alt="Ambivalenz in Europa">
 
                                     </div>
                                 </a>
 
                                 <figcaption>
-                                    <a href="http://localhost:8000/collection/politics-of-photography/" class="box-link">
-                                        <img class="type-icon" src="http://localhost:8000/RomArchive_files/video.svg" alt="video">
-                                        Era Trammer, 2018, pho_00054
+                                    <a href="{{ url_for('politics_of_photography') }}" class="box-link">
+                                        <img class="type-icon" src="{{ url_for('static', filename='images/video.svg') }}" alt="video">
+                                        viedo tittle, year, reference
                                     </a>
+
                                 </figcaption>
                             </figure>
 
@@ -338,28 +343,27 @@
                                 </p>
                             </div>
 
-                            <a class="ellipsis" href="http://localhost:8000/collection/politics-of-photography/"><img class="ellipsis" src="http://localhost:8000/RomArchive_files/read-more.svg" alt="more"></a>
+                            <a class="ellipsis" href="{{ url_for('politics_of_photography') }}"><img class="ellipsis" src="{{ url_for('static', filename='images/read-more.svg') }}" alt="more"></a>
                         </div>
 
                         <figure class="bundle desktop">
-                            <a href="http://localhost:8000/collection/politics-of-photography/">
+                            <a href="{{ url_for('politics_of_photography') }}">
                                 <div class="image-frame">
 
-                                    <img class="landscape" srcset="http://localhost:8000/RomArchive_files/Gypsy_Gril_2.jpeg 1x, http://localhost:8000/RomArchive_files/Gypsy_Gril_2.jpeg 2x" src="http://localhost:8000/RomArchive_files/Gypsy_Gril_2.jpeg">
+                                    <img class="landscape" srcset="{{ url_for('static', filename='images/Gypsy_Woman.jpeg') }} 1x, {{ url_for('static', filename='images/Gypsy_Woman.jpeg') }} 2x" src="{{ url_for('static', filename='images/Gypsy_Woman.jpeg') }}">
 
                                 </div>
                             </a>
 
                             <figcaption>
-                                <a href="http://localhost:8000/collection/politics-of-photography/">
-                                    <img class="type-icon" src="http://localhost:8000/RomArchive_files/video.svg" alt="video">
-                                    Era Trammer, 2018, pho_00054
+                                <a href="{{ url_for('politics_of_photography') }}">
+                                    <img class="type-icon" src="{{ url_for('static', filename='images/video.svg') }}" alt="video">
+                                    Name, Year, Reference
                                 </a>
                             </figcaption>
                         </figure>
 
                         <div class="curatorial-section desktop">
-                            Antiziganismus und Ambivalenz in Europa
                             Antiziganismus und Ambivalenz in Europa
                         </div>
 
