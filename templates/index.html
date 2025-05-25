@@ -282,7 +282,6 @@
 
             <nav class="curatorial-sections">
                 <ul class="menu">
-                    <!--li class="visual-arts"><a href="http://localhost:8000/visual_art/Archive.html">Visual Art</a></li-->
                     <li class="visual-arts"><a href="{{ url_for('visual_art') }}">Visual Art</a></li>
                     <li class="film"><a href="{{ url_for('audio') }}">Audio</a></li>
                     <li class="music"><a href="{{ url_for('video') }}">Video</a></li>
@@ -342,14 +341,17 @@
                                 </p>
                             </div>
 
-                            <a class="ellipsis" href="{{ url_for('politics_of_photography') }}"><img class="ellipsis" src="{{ url_for('static', filename='images/read-more.svg') }}" alt="more"></a>
+                            <a class="ellipsis" href="{{ url_for('politics_of_photography') }}">
+                                <img class="ellipsis" src="{{ url_for('static', filename='images/read-more.svg') }}" alt="more"></a>
                         </div>
 
                         <figure class="bundle desktop">
                             <a href="{{ url_for('politics_of_photography') }}">
                                 <div class="image-frame">
 
-                                    <img class="landscape" srcset="{{ url_for('static', filename='images/Gypsy_Woman.jpeg') }} 1x, {{ url_for('static', filename='images/Gypsy_Woman.jpeg') }} 2x" src="{{ url_for('static', filename='images/Gypsy_Woman.jpeg') }}">
+                                    <img class="landscape" srcset="{{ url_for('static', filename='images/Ambivalence_in_Europe.png') }} 1x,
+                                                                  {{ url_for('static', filename='images/Ambivalence_in_Europe.png') }} 2x"
+                                                              src="{{ url_for('static', filename='images/Ambivalence_in_Europe.png') }}">
 
                                 </div>
                             </a>
