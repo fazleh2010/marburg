@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Visual Art</title>
+
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="cleartype" content="on">
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/screen.css') }}">
+
+    <script src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.detect_swipe.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/helper.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+
+
+    <!--[if lt IE 9]>
+
+		<script src="/static/js/vendor/html5shiv.min.js"></script>
+
+	<![endif]-->
+</head>
+
+<body class=" bundle list">
+    <!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+
+    <header class="site">
+        <a id="header-logo" href=" http://localhost:8000/en/">
+
+            <img class="logo" srcset="{{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }} 57w,
+                         {{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }} 93w,
+                         {{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }} 103w"
+                 src="{{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }}" alt="Uni Marburg Logo">
+        </a>
+
+
+
+        <h1 id="header-title">Antiziganismus und Ambivalenz in Europa</h1>
+
+        <div id="header-tools">
+            <a id="search" href=href="http://127.0.0.1:5000/search/">
+                <img src="{{ url_for('static', filename='images/search.svg') }}" alt="Search"></a>
+
+
+            <div id="hamburger">
+                <img class="hamburger" src="{{ url_for('static', filename='images/menu-open.svg') }}">
+            </div>
+        </div>
+    </header>
+
+    <div id="menu" class="menu">
+
+
+
+        <img class="logo" srcset="{{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }} 57w,
+                    {{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }} 93w,
+                    {{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }} 103w"
+               src="{{ url_for('static', filename='images/Uni_Marburg_Siegel.png') }}">
+
+
+        <nav class="site">
+            <h1 id="header-title-menu" class="box clickable-box"><a class="box-link" href="http://127.0.0.1:5000/">Antiziganismus und Ambivalenz in Europa</a></h1>
+
+            <ul class="menu">
+                <li class="box clickable-box">
+                    <a class="box-link" href="http://127.0.0.1:5000/">Home</a>
+                </li>
+                <li class="submenu collapsed">
+                    <div class="box submenu-header clickable-box">
+                        <a class="box-link" href="http://127.0.0.1:5000/sections/">Curated sections</a>
+                        <button class="collapse"><img src="{{ url_for('static', filename='images/open-vertical.svg') }}" alt="collapse"></button>
+                    </div>
+                    <ul class="menu">
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('visual_art') }}">Visual Art</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('audio') }}">Audio</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('video') }}">Video</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('book') }}">Book</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="http://localhost:7474/browser/">Graph Database</a></li> <!-- External URL is fine -->
+                    </ul>
+                </li>
+                <li class="box clickable-box"><a class="box-link" href="{{ url_for('visual_art') }}">Visual Art</a></li>
+                <li class="box clickable-box"><a class="box-link" href="{{ url_for('audio') }}">Audio</a></li>
+                <li class="box clickable-box"><a class="box-link" href="{{ url_for('video') }}">Video</a></li>
+                <li class="box clickable-box"><a class="box-link" href="{{ url_for('book') }}">Book</a></li>
+                <li class="box clickable-box"><a class="box-link" href="http://localhost:7474/browser/">Graph Database</a></li> <!-- External URL is fine -->
+
+
+                <li class="secondary submenu collapsed">
+
+
+                    <div class="box submenu-header clickable-box">
+                        <a class="box-link" href="{{ url_for('about') }}">About</a>
+                        <button class="collapse"><img src="{{ url_for('static', filename='images/open-vertical.svg') }}" alt="collapse"></button>
+                    </div>
+
+                    <ul class="menu">
+
+                       <li class="box clickable-box"><a class="box-link" href="{{ url_for('context_project') }}">Roma: Who Are We?</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('history_of_romarchive') }}">Idea - Advisory Board - Team</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('curators') }}">Archive Sections and Curators</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('ethical_guidelines') }}">RomArchive Ethical Guidelines*</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('collection_policy') }}">Collection Policy</a></li>
+                        <li class="box clickable-box"><a class="box-link" href="{{ url_for('faq') }}">Frequently Asked Questions | FAQ</a></li>
+                    </ul>
+                </li>
+                <li class="box secondary clickable-box"><a class="box-link" href="{{ url_for('search') }}">Search</a></li>
+                <li class="box secondary clickable-box"><a class="box-link" href="{{ url_for('terms') }}">Terms</a></li>
+                <li class="box secondary clickable-box"><a class="box-link" href="{{ url_for('contact') }}">Contact</a></li>
+
+            </ul>
+
+            <div class="language-selector">
+
+
+                <a href="http://127.0.0.1:5000/" hreflang="en"><svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+                        <defs>
+                            <path d="M5.12690455,23.7465804 L0.141880336,28.7982954 L0.141880336,18.4091071 C0.0488516495,17.9539311 9.47288506e-16,17.4826705 8.8817842e-16,17 L0,7 C-4.73447626e-16,3.13400675 3.13400675,7.10171439e-16 7,0 L22,0 C25.8659932,-7.10171439e-16 29,3.13400675 29,7 L29,17 C29,20.8659932 25.8659932,24 22,24 L7,24 C6.35123751,24 5.72308855,23.911743 5.12690455,23.7465804 Z" id="language-switcher-path-1"></path>
+                        </defs>
+                        <g id="language-switcher" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Icon-Color" transform="translate(7.000000, 8.000000)">
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#language-switcher-path-1"></use>
+                                </mask>
+                                <use id="Mask" fill="#202020" xlink:href="#language-switcher-path-1"></use>
+                                <g id="black" mask="url(#mask-2)" fill="#000000">
+                                    <g transform="translate(-7.000000, -8.000000)" id="Color-Rectangle">
+                                        <rect x="0" y="0" width="44" height="44"></rect>
+                                    </g>
+                                </g>
+                            </g>
+                            <text id="language" font-family="Montserrat-Bold, Montserrat" font-size="9.9" font-weight="bold" letter-spacing="0.297000021" fill="#FFFFFF">
+                                <tspan x="16.7739" y="19">EN</tspan>
+                            </text>
+                        </g>
+                    </svg>
+                </a>
+
+
+
+
+
+                <a href="http://127.0.0.1:5000/de/frontpage/" hreflang="de"><svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+                        <defs>
+                            <path d="M5.12690455,23.7465804 L0.141880336,28.7982954 L0.141880336,18.4091071 C0.0488516495,17.9539311 9.47288506e-16,17.4826705 8.8817842e-16,17 L0,7 C-4.73447626e-16,3.13400675 3.13400675,7.10171439e-16 7,0 L22,0 C25.8659932,-7.10171439e-16 29,3.13400675 29,7 L29,17 C29,20.8659932 25.8659932,24 22,24 L7,24 C6.35123751,24 5.72308855,23.911743 5.12690455,23.7465804 Z" id="language-switcher-path-1"></path>
+                        </defs>
+                        <g id="language-switcher" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Icon-Color" transform="translate(7.000000, 8.000000)">
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#language-switcher-path-1"></use>
+                                </mask>
+                                <use id="Mask" fill="#202020" xlink:href="#language-switcher-path-1"></use>
+                                <g id="black" mask="url(#mask-2)" fill="#000000">
+                                    <g transform="translate(-7.000000, -8.000000)" id="Color-Rectangle">
+                                        <rect x="0" y="0" width="44" height="44"></rect>
+                                    </g>
+                                </g>
+                            </g>
+                            <text id="language" font-family="Montserrat-Bold, Montserrat" font-size="9.9" font-weight="bold" letter-spacing="0.297000021" fill="#FFFFFF">
+                                <tspan x="16.7739" y="19">DE</tspan>
+                            </text>
+                        </g>
+                    </svg>
+                </a>
+
+
+
+
+
+                <a href="http://127.0.0.1:5000/rom/frontpage/" hreflang="rom"><svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+                        <defs>
+                            <path d="M5.12690455,23.7465804 L0.141880336,28.7982954 L0.141880336,18.4091071 C0.0488516495,17.9539311 9.47288506e-16,17.4826705 8.8817842e-16,17 L0,7 C-4.73447626e-16,3.13400675 3.13400675,7.10171439e-16 7,0 L22,0 C25.8659932,-7.10171439e-16 29,3.13400675 29,7 L29,17 C29,20.8659932 25.8659932,24 22,24 L7,24 C6.35123751,24 5.72308855,23.911743 5.12690455,23.7465804 Z" id="language-switcher-path-1"></path>
+                        </defs>
+                        <g id="language-switcher" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Icon-Color" transform="translate(7.000000, 8.000000)">
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#language-switcher-path-1"></use>
+                                </mask>
+                                <use id="Mask" fill="#202020" xlink:href="#language-switcher-path-1"></use>
+                                <g id="black" mask="url(#mask-2)" fill="#000000">
+                                    <g transform="translate(-7.000000, -8.000000)" id="Color-Rectangle">
+                                        <rect x="0" y="0" width="44" height="44"></rect>
+                                    </g>
+                                </g>
+                            </g>
+                            <text id="language" font-family="Montserrat-Bold, Montserrat" font-size="9.9" font-weight="bold" letter-spacing="0.297000021" fill="#FFFFFF">
+                                <tspan x="9" y="19">ROM</tspan>
+                            </text>
+                        </g>
+                    </svg>
+                </a>
+
+
+            </div>
+        </nav>
+
+
+    </div>
+
+
+    <div class="body-wrapper">
+
+        <main class="itembundle-list">
+
+
+            <div>
+                <form class="filters" action="" method="get">
+                    <select name="section">
+                        <option value="" selected="selected">Painting</option>
+                        <option value="dance">Ilonka</option>
+                        <option value="film">Zwei Zigeuner</option>
+
+                    </select>
+
+                    <select name="collection">
+                        <option value="" selected="selected">Author</option>
+                        <option value="collection-gustav-balazs">Collection KUNFFY LAJOS</option>
+                        <option value="collection-petra-gelbart">Collection BECKMANN MAX</option>
+                    </select>
+
+                    <select name="term">
+                        <option value="" selected="selected">Museum</option>
+                        <option value="19th-century">Ludwig, Köln</option>
+                        <option value="choreography">Lajos Kunffy- Memorial-Museum</option>
+
+                        <!--option value="city">City</option>
+                        <option value="civil-rights">Civil rights</option>
+                        <option value="classic">Classic</option>
+                        <option value="cliche">Cliché</option>
+                        <option value="youth">Youth</option-->
+
+                    </select>
+
+                    <button class="reset">Reset</button>
+                </form>
+            </div>
+
+
+            <section class="results itembundles">
+                <div class="descendants">
+
+                    <!--h1>Cypher Query Interface</h1>
+                    <form method="POST">
+                        <label for="cypher_query">Enter Cypher Query:</label><br>
+                        <textarea name="cypher_query" required>{{ query }}</textarea><br>
+                        <button type="submit">Run Query</button>
+                    </form>
+
+                    {% if error %}
+                    <p style="color: red;">Error: {{ error }}</p>
+                    {% elif records %}
+                    <h2>Results:</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                {% for key in keys %}
+                                <th>{{ key }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in records %}
+                            <tr>
+                                {% for key in keys %}
+                                <td>{{ row[key] }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% endif %}
+
+                    <p><a href="{{ url_for('index') }}">← Back to Home</a></p-->
+
+
+                    <div class="box thumbnail-box civil-rights itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail civil-rights no-thumb">
+
+                                <div class="type-icon civil-rights"><img src="Archive_files/video.svg" alt="video"></div>
+                            </div>
+
+                            <figcaption class="civil-rights">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/interview-with-romani-rose-of-the-central-council-of-german-sinti-and-roma/">
+                                        An Interview with Romani Rose of the Central Council of German Sinti and Roma
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">Jan Selling, June 16, 2016, rom_00011</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+                    <div class="box thumbnail-box theatre itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail theatre ">
+
+                                <img class="portrait" srcset="Archive_files/b04ca8a8ae463260629e6d2b35102ed8.jpg 1x, Archive_files/3c141ddf9b5e74c30d65f7bfd5f99395.jpg 2x" src="Archive_files/b04ca8a8ae463260629e6d2b35102ed8.jpg">
+
+                                <div class="type-icon theatre"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="theatre">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/itembundle-74/">
+                                        Bahanalie Poster
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">unknown, 2001, the_02181</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="landscape" srcset="Archive_files/8f67dac95624d4150cbb37ffaa5d5277.jpg 1x, Archive_files/36f69a79119855c5398d69e119d02ea7.jpg 2x" src="Archive_files/8f67dac95624d4150cbb37ffaa5d5277.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/itembundle-27/">
+                                        Crazy Water Wheel
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">Alfred Ullrich, 2011, vis_00242_1</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="landscape" srcset="Archive_files/ad6833800f1e4c71b3418a44a1e54d0f.jpg 1x, Archive_files/23fd61453a5a24e4f46b916aa6f61b9d.jpg 2x" src="Archive_files/ad6833800f1e4c71b3418a44a1e54d0f.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/itembundle-46/">
+                                        Detox Dance
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">Monica Diener, 2016, vis_00075_3</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box theatre itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail theatre ">
+
+                                <img class="landscape" srcset="Archive_files/1949ace1efbde23643e3e634a88d33b5.jpg 1x, Archive_files/cc4ef1f86f2b88031d9eed7aad985b61.jpg 2x" src="Archive_files/1949ace1efbde23643e3e634a88d33b5.jpg">
+
+                                <div class="type-icon theatre"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="theatre">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/itembundle-53/">
+                                        Gadjo Dildo
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">unknown, 2015 - 2017, the_50042</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="landscape" srcset="Archive_files/a2b42fe4ccc32ee9db3ec779d447bcf0.jpg 1x, Archive_files/d7b31ccea689dfd32fc28a10a4d3e291.jpg 2x" src="Archive_files/a2b42fe4ccc32ee9db3ec779d447bcf0.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image-gallery.svg" alt="image-gallery"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/gelem-gelem/itembundle-36/">
+                                        Gelem Gelem
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2007, vis_00197_4</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="landscape" srcset="Archive_files/810f7fbaee0c33b70ca2baaee2a0fa9f.jpg 1x, Archive_files/28cb39e63b5359e40c501df3cd726727.jpg 2x" src="Archive_files/810f7fbaee0c33b70ca2baaee2a0fa9f.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image-gallery.svg" alt="image-gallery"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/gelem-gelem/itembundle-40/">
+                                        Gelem Gelem
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2007, vis_00197_2</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="landscape" srcset="Archive_files/f22ed81ed0e546bf1fc1dd3470f08780.jpg 1x, Archive_files/5b79d7bf449e1c339a4406a844a07ee3.jpg 2x" src="Archive_files/f22ed81ed0e546bf1fc1dd3470f08780.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image-gallery.svg" alt="image-gallery"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/gelem-gelem/itembundle-39/">
+                                        Gelem Gelem
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2007, vis_00197_3</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="landscape" srcset="Archive_files/bc7f630fbd04c68996c2cae8cc27d47f.jpg 1x, Archive_files/e872aa3a0865e61a0a7515d414dfe12c.jpg 2x" src="Archive_files/bc7f630fbd04c68996c2cae8cc27d47f.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image-gallery.svg" alt="image-gallery"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/gelem-gelem/itembundle-41/">
+                                        Gelem Gelem
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2007, vis_00197_1</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="landscape" srcset="Archive_files/6e6d6596e4c2d10b3ebe2c1e1cc76f50.jpg 1x, Archive_files/be6eab6082ac4652dae94bcbf39d8a8c.jpg 2x" src="Archive_files/6e6d6596e4c2d10b3ebe2c1e1cc76f50.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/itembundle-89/">
+                                        Korene
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">Vera Lacková, 2017, vis_00143_1</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="landscape" srcset="Archive_files/84f51b000c8fd713ad64d462c7d2c61c.jpg 1x, Archive_files/7e9231ec08a04ca44d72dd0dc34acb2d.jpg 2x" src="Archive_files/84f51b000c8fd713ad64d462c7d2c61c.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/itembundle-150/">
+                                        The Scream
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">Delaine Le Bas, 2013, vis_00174_1</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="landscape" srcset="Archive_files/49640d9717efcffa323a2daab9ad136e.jpg 1x, Archive_files/bbde1b334f59d362236bcecbead2f96e.jpg 2x" src="Archive_files/49640d9717efcffa323a2daab9ad136e.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/itembundle-47/">
+                                        Vendim per tu marr cmim per tu paguar
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">Sead Kazanxhiu, 2015, vis_00199_3</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="landscape" srcset="Archive_files/a7d3802e5c54006572911ab1e4e38b52.jpg 1x, Archive_files/55bc76f363e4b330faa0028d5b860213.jpg 2x" src="Archive_files/a7d3802e5c54006572911ab1e4e38b52.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/itembundle-131/">
+                                        Zalikerdo Drom
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">Małgorzata Mirga-Tas, 2014, vis_00089_2</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box music itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail music no-thumb">
+
+
+
+                                <div class="type-icon music"><img src="Archive_files/audio.svg" alt="audio"></div>
+                            </div>
+
+
+                            <figcaption class="music">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/03-grushenka/">
+                                        03 Grushen'ka
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">Alexander Kolpakov, mus_10074</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box music itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail music no-thumb">
+
+
+
+                                <div class="type-icon music"><img src="Archive_files/audio.svg" alt="audio"></div>
+                            </div>
+
+
+                            <figcaption class="music">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/07-transparent-waltz/">
+                                        07 Transparent Waltz
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">Alexander Kolpakov, mus_10075</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box music itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail music no-thumb">
+
+
+
+                                <div class="type-icon music"><img src="Archive_files/audio.svg" alt="audio"></div>
+                            </div>
+
+
+                            <figcaption class="music">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/09-so-that-you-dont-suffer/">
+                                        09 So That You Don't Suffer
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">Alexander Kolpakov, mus_10076</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="portrait" srcset="Archive_files/e47c1161cfb2f41c2002045907b73998.jpg 1x, Archive_files/b4ea56162465ea3398ac4f5d55e47830.jpg 2x" src="Archive_files/e47c1161cfb2f41c2002045907b73998.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/100-years-100-artists-100-artworks/">
+                                        100 Years, 100 Artists, 100 Artworks
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">Delaine Le Bas, Oct. 9, 2008 - Oct. 30, 2008, vis_00168</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box dance itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail dance no-thumb">
+
+
+
+                                <div class="type-icon dance"><img src="Archive_files/image-gallery.svg" alt="image-gallery"></div>
+                            </div>
+
+
+                            <figcaption class="dance">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/10-hungarian-dances/">
+                                        10 Hungarian Dances
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short"></span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box music itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail music no-thumb">
+
+
+
+                                <div class="type-icon music"><img src="Archive_files/audio.svg" alt="audio"></div>
+                            </div>
+
+
+                            <figcaption class="music">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/10-i-walk-on-the-white-snow/">
+                                        10 I Walk On The White Snow
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">Alexander Kolpakov, mus_10077</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box music itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail music no-thumb">
+
+
+
+                                <div class="type-icon music"><img src="Archive_files/audio.svg" alt="audio"></div>
+                            </div>
+
+
+                            <figcaption class="music">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/11-still-the-same-guitar/">
+                                        11 Still The Same Guitar
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">Alexander Kolpakov, mus_10078</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box dance itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail dance ">
+
+                                <img class="portrait" srcset="Archive_files/170b505bedff051fdc63340736da519d.jpg 1x, Archive_files/9d081bb42bcff6a4ba3e686fe70f65bc.jpg 2x" src="Archive_files/170b505bedff051fdc63340736da519d.jpg">
+
+                                <div class="type-icon dance"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="dance">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1682-coplas-al-nacimiento-y-bayle-que-hacen-los-pastores-de-belen-y-las-gitanas-de-egypto-en-alabanzas-praise-del-nino-dios-printed-4-ff-with-ms-notes/">
+                                        1682. Coplas al Nacimiento, y Bayle, que hacen los Pastores de
+                                        Belén, y las Gitanas de Egypto, en alabanzas [praise] del Niño Dios.
+                                        Printed, 4 ff. (With MS notes.)
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">unknown, 1682, dan_00015</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box dance itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail dance ">
+
+                                <img class="portrait" srcset="Archive_files/7dc89520c11bfb8c140ff2ad77fc125a.jpg 1x, Archive_files/e871a076df00773e3da592b2d0ceb1a7.jpg 2x" src="Archive_files/7dc89520c11bfb8c140ff2ad77fc125a.jpg">
+
+                                <div class="type-icon dance"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="dance">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1781-lebrija-poster-advertising-gypsy-dances-facsimile/">
+                                        1781. Lebrija. Poster advertising Gypsy dances (facsimile).
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">unknown, 1781, dan_00021</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="portrait" srcset="Archive_files/6a2e25b99e2b74ad3ac1e8a8bbb7a800.jpg 1x, Archive_files/ce8d26c9841eb77438ed4b42ded53ebb.jpg 2x" src="Archive_files/6a2e25b99e2b74ad3ac1e8a8bbb7a800.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1-roma-manifest-zurich/1-roma-manifest-zurich-5/">
+                                        1 Roma Manifest Zurich
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2016, vis_00196_2</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="portrait" srcset="Archive_files/0295ddc42882aa1fda269e6496a0606c.jpg 1x, Archive_files/fb87ce84736be117e3581d7389595e45.jpg 2x" src="Archive_files/0295ddc42882aa1fda269e6496a0606c.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1-roma-manifest-zurich/1-roma-manifest-zurich-11/">
+                                        1 Roma Manifest Zurich
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2016, vis_00196_8</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="portrait" srcset="Archive_files/bdefe052e1479d544ebc1f8f4060c73c_002.jpg 1x, Archive_files/68d067af099fa6d2515dfec90e5464fa_002.jpg 2x" src="Archive_files/bdefe052e1479d544ebc1f8f4060c73c_002.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image-gallery.svg" alt="image-gallery"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1-roma-manifest-zurich/">
+                                        1 Roma Manifest Zurich
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2016, vis_00196</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="landscape" srcset="Archive_files/104d9653f83220159643b7ae907a30bb.jpg 1x, Archive_files/e72ac7640c76fc38be84857c839535be.jpg 2x" src="Archive_files/104d9653f83220159643b7ae907a30bb.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1-roma-manifest-zurich-1/">
+                                        1 Roma Manifest Zurich
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2016, vis_00218</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="portrait" srcset="Archive_files/af4c6492ba67f144ee6bb755f06ef2fd.jpg 1x, Archive_files/33fd6959ee6d0f9523a7552d424b344b.jpg 2x" src="Archive_files/af4c6492ba67f144ee6bb755f06ef2fd.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1-roma-manifest-zurich/1-roma-manifest-zurich-8/">
+                                        1 Roma Manifest Zurich
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2016, vis_00196_5</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="portrait" srcset="Archive_files/595f3601e212f0da7c2649799bac53a2.jpg 1x, Archive_files/b4be23008fc9dd5f97bdcf4066e81204.jpg 2x" src="Archive_files/595f3601e212f0da7c2649799bac53a2.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1-roma-manifest-zurich/1-roma-manifest-zurich-9/">
+                                        1 Roma Manifest Zurich
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2016, vis_00196_6</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="portrait" srcset="Archive_files/ec33feacb62c23dd58b1c4c43a27637f.jpg 1x, Archive_files/acdee01a2a66de8f4ef4bff4352a313a.jpg 2x" src="Archive_files/ec33feacb62c23dd58b1c4c43a27637f.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1-roma-manifest-zurich/1-roma-manifest-zurich-12/">
+                                        1 Roma Manifest Zurich
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2016, vis_00196_9</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="landscape" srcset="Archive_files/36fe396b183120a7b09bc6c8c50b029d.jpg 1x, Archive_files/aef35b160bde0c544db23e7c5fbc7179.jpg 2x" src="Archive_files/36fe396b183120a7b09bc6c8c50b029d.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1-roma-manifest-zurich-3/">
+                                        1 Roma Manifest Zurich
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2016, vis_00221</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="portrait" srcset="Archive_files/0aec41de9605243e729e25cb17b189be.jpg 1x, Archive_files/b21c48762133959d44d3db9a56cf118f.jpg 2x" src="Archive_files/0aec41de9605243e729e25cb17b189be.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1-roma-manifest-zurich/1-roma-manifest-zurich-13/">
+                                        1 Roma Manifest Zurich
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2016, vis_00196_10</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="portrait" srcset="Archive_files/57fb954f9a0aea04b114f921e592dbb8.jpg 1x, Archive_files/7ab8b37170240e21eeca4ef17f9f651f.jpg 2x" src="Archive_files/57fb954f9a0aea04b114f921e592dbb8.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1-roma-manifest-zurich/1-roma-manifest-zurich-10/">
+                                        1 Roma Manifest Zurich
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2016, vis_00196_7</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="landscape" srcset="Archive_files/16d40c2bd8191171d79c90dcd9ee824e.jpg 1x, Archive_files/6c28a983ff6dc2cdea73d0f8fd3434b0.jpg 2x" src="Archive_files/16d40c2bd8191171d79c90dcd9ee824e.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1-roma-manifest-zurich-2/">
+                                        1 Roma Manifest Zurich
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2016, vis_00220</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="portrait" srcset="Archive_files/2a723118c3f4cc48e388882b3a016742.jpg 1x, Archive_files/5ece6b570b865310f70cf437a9d9d363.jpg 2x" src="Archive_files/2a723118c3f4cc48e388882b3a016742.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1-roma-manifest-zurich/1-roma-manifest-zurich-7/">
+                                        1 Roma Manifest Zurich
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2016, vis_00196_4</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="portrait" srcset="Archive_files/bdefe052e1479d544ebc1f8f4060c73c.jpg 1x, Archive_files/68d067af099fa6d2515dfec90e5464fa.jpg 2x" src="Archive_files/bdefe052e1479d544ebc1f8f4060c73c.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1-roma-manifest-zurich/1-roma-manifest-zurich-4/">
+                                        1 Roma Manifest Zurich
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2016, vis_00196_1</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="portrait" srcset="Archive_files/71f0a3cbc9559eac7b93ffd29e55483d.jpg 1x, Archive_files/e3a4b76ffc237f0572787cf1a67c44ec.jpg 2x" src="Archive_files/71f0a3cbc9559eac7b93ffd29e55483d.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/1-roma-manifest-zurich/1-roma-manifest-zurich-6/">
+                                        1 Roma Manifest Zurich
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">RR Marki, 2016, vis_00196_3</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box civil-rights itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail civil-rights ">
+
+                                <img class="portrait" srcset="Archive_files/773d3378f714cde9099e3aa784dad9bd.jpg 1x, Archive_files/fd41a8122b3ab86deee4676ea250c7a9.jpg 2x" src="Archive_files/773d3378f714cde9099e3aa784dad9bd.jpg">
+
+                                <div class="type-icon civil-rights"><img src="Archive_files/image-gallery.svg" alt="image-gallery"></div>
+                            </div>
+
+
+                            <figcaption class="civil-rights">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/20152615rsp-15042015-text-adopted-by-european-parliament/">
+                                        2015/2615(RSP) - 15/04/2015 Text adopted by European Parliament
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">European Parliament, April 15, 2015, rom_00023</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box visual-arts itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail visual-arts ">
+
+                                <img class="landscape" srcset="Archive_files/98858c1a666e27dad530ac6f110a79d2.jpg 1x, Archive_files/e36a1540f622f141b8052c6349445834.jpg 2x" src="Archive_files/98858c1a666e27dad530ac6f110a79d2.jpg">
+
+                                <div class="type-icon visual-arts"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="visual-arts">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/3/">
+                                        #3
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">André Raatzsch, 1976 - 1978, vis_00071</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box civil-rights itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail civil-rights ">
+
+                                <img class="landscape" srcset="Archive_files/7ed8502a7c0b169c6e6627e91173591e.jpg 1x, Archive_files/73294b2685eaf7e2e17556852d345646.jpg 2x" src="Archive_files/7ed8502a7c0b169c6e6627e91173591e.jpg">
+
+                                <div class="type-icon civil-rights"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="civil-rights">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/3rd-world-roma-congress-in-goettingen/">
+                                        3rd World Roma Congress in Göttingen
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">Adam Bartosz, May 16, 1981 - May 20, 1981, Rom_10080</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="box thumbnail-box civil-rights itembundle clickable-box">
+
+                        <figure class="itembundle">
+
+                            <div class="thumbnail civil-rights ">
+
+                                <img class="landscape" srcset="Archive_files/f4a492196d3d96754573aee8fe14cffa.jpg 1x, Archive_files/1f8430fe6dac3308bbcd704c7ccfc6cd.jpg 2x" src="Archive_files/f4a492196d3d96754573aee8fe14cffa.jpg">
+
+                                <div class="type-icon civil-rights"><img src="Archive_files/image.svg" alt="image"></div>
+                            </div>
+
+
+                            <figcaption class="civil-rights">
+                                <p class="name">
+                                    <a class="box-link" href=" http://localhost:8000/en/collection/4th-world-romani-congress-in-serock-poland-from-the-left-sait-balic-marcel-courthiade-rajko-djuric-weer-rajendra-rishi-ian-hancock-and-stanislaw-stankiewicz/">
+                                        4th World Romani Congress in Serock, Poland (from the left: Sait
+                                        Balić, Marcel Courthiade, Rajko Djurić, Weer Rajendra Rishi, Ian Hancock
+                                        and Stanislaw Stankiewicz)
+                                    </a>
+                                </p>
+
+                                <p class="additional-info">
+                                    <span class="caption-short">Adam Bartosz, April 8, 1990, rom_10147</span>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+
+
+
+                </div>
+            </section>
+
+
+
+
+
+            <nav class="pagination">
+                <span class="step-links">
+
+
+
+
+                    <span class="current-page">1</span>
+
+                    /
+
+
+                    <a href=" http://localhost:8000/en/collection/i/?page=2">2</a>
+
+                    /
+
+
+                    <span class="dotdotdot">...</span>
+
+                    /
+
+
+                    <a href=" http://localhost:8000/en/collection/i/?page=35">35</a>
+
+                    /
+
+
+                    <a href=" http://localhost:8000/en/collection/i/?page=36">36</a>
+
+
+
+
+
+                    <a class="next" href=" http://localhost:8000/en/collection/i/?page=2">
+                        <span>next</span>
+                        <img src="Archive_files/slider-next.svg">
+                    </a>
+
+
+                </span>
+            </nav>
+
+
+        </main>
+
+    </div>
+
+    <footer class="site">
+
+        <div class="footer-title">Antiziganismus und Ambivalenz in Europa</div>
+
+        <nav class="footer">
+            <a href="{{ url_for('contact') }}">Contact</a>
+            <a href="{{ url_for('supporters') }}">Supporters</a>
+            <a href="{{ url_for('imprint') }}">Imprint</a>
+            <a href="{{ url_for('privacy') }}">Privacy statement</a>
+        </nav>
+
+    </footer>
+
+
+    <script>
+        document.querySelectorAll('.filters select').forEach(function(element) {
+            element.addEventListener('change', function(event) {
+                document.querySelector('.filters').submit()
+            })
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>
