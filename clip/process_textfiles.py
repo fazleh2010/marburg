@@ -69,28 +69,32 @@ def find_similar_named_files(directory):
     file_groups = defaultdict(list)
 
     for file_name in os.listdir(directory):
-        full_path = os.path.join(directory, file_name)
-        if os.path.isfile(full_path):
-            base_name = strip_extensions(file_name)
-            file_groups[base_name].append(file_name)
+        if valid_file(file_name):
+           full_path = os.path.join(directory, file_name)
+           if os.path.isfile(full_path):
+              base_name = strip_extensions(file_name)
+              file_groups[base_name].append(file_name)
 
     print("=== Files with same base name (partial match) ===")
     for base_name, files in file_groups.items():
         if len(files) > 1:
             print(f"\nGroup: {base_name}")
+            index=1
+            file1=""
+            file2=""
             for file_path in files:
-                print(" -", file_path)
-            if len(files) >= 2:
-                merge_two_csv_files(files[0], files[1],directory+ "merged_"+base_name+"csv")
-            else:
-                print("Not enough files to merge.")
+                print(str(index)+" -", file_path)
+            first_file = directory+files[0]  # "file1.txt"
+            second_file = directory+files[1]  # "file2.txt"
+            print("First file:", first_file)
+            print("Second file:", second_file)
+            merge_two_csv_files(first_file, second_file, directory+base_name+"_merged_files.csv")
+
 
 def valid_file(filename):
     # Exclude hidden, temp, and lock files
     exclude_prefixes = ('.', '~lock', '~$')
     return not filename.startswith(exclude_prefixes) and filename.endswith('.csv')
-
-
 
 
 def process_all_txt_files(input_dir, output_dir):
@@ -108,19 +112,12 @@ def process_all_txt_files(input_dir, output_dir):
 
 
 def main():
-    input_dir="/home/melahi/code/marburg/images/Gipsy/"
-    output_dir="/home/melahi/code/marburg/images/Gipsy/output"
+    input_dir="/home/melahi/code/marburg/images/Sinti-und-Roma/"
+    output_dir="/home/melahi/code/marburg/images/Sinti-und-Roma/output/"
     process_all_txt_files(input_dir, output_dir)
 
     find_similar_named_files(output_dir)
 
-    #prin
-
-    #file1 = "/home/melahi/code/marburg/images/Gipsy/output/Leonardo_da_Vinci_Fuenf_groteske_Kopfstudien_Mann_wird_von_Zigeunern_3377131a.csv"  # 🔁 Replace with actual file path
-    #file2 = "/home/melahi/code/marburg/images/Gipsy/output/Leonardo_da_Vinci_Fuenf_groteske_Kopfstudien_Mann_wird_von_Zigeunern_3377131a.jpeg.csv"  # 🔁 Replace with actual file path
-    #output_file = "/home/melahi/code/marburg/images/Gipsy/output/merged_output.csv"  # 🔁 Destination
-
-    #merge_two_csv_files(file1, file2, output_file)
 
 
 if __name__ == "__main__":

@@ -4,6 +4,8 @@ import csv
 from PIL import Image
 import clip
 
+""" python -m clip.main """
+
 
 def load_clip_model(device="cuda"):
     """Load the CLIP model and preprocessing function."""
@@ -86,9 +88,9 @@ def main():
     model, preprocess = load_clip_model(device)
 
     # Define directories
-    image_dir = "images/Gipsy/"
+    image_dir = "images/Sinti-und-Roma/"
     text_dir = "texts/"
-    output_dir = "images/Gipsy/output/"
+    output_dir = "images/Sinti-und-Roma/output/"
     text_file = text_dir + "example.txt"
 
 
