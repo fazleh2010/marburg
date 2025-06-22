@@ -86,10 +86,12 @@ def main():
     model, preprocess = load_clip_model(device)
 
     # Define directories
-    image_dir = "/home/melahi/code/marburg/images/"
-    text_dir = "/home/melahi/code/marburg/texts/"
-    output_dir = "/home/melahi/code/marburg/output/"
+    image_dir = "images/Gipsy/"
+    text_dir = "texts/"
+    output_dir = "images/Gipsy/output/"
     text_file = text_dir + "example.txt"
+
+
 
     # Supported image extensions
     valid_extensions = ('.jpg', '.jpeg', '.png', '.bmp', '.gif')

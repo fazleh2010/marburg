@@ -2,9 +2,5 @@
 *.log
 
 # Ignore the 'image' directory
-private_images/
-
-
-# Ignore the 'image' directory
-static/private/
+images/
 
