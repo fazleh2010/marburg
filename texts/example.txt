@@ -17,3 +17,61 @@ a piece of art
 a painting 
 a diagram 
 a box
+horse
+horses
+animal
+war
+cap
+garments
+dress
+Maxi
+blouses
+skirts
+golden earrings
+necklaces
+bracelets
+headcarves
+Diklo
+aprones
+red ribbon
+footwear
+sandals
+slippers
+boots
+shoes
+shalvari
+jewelry
+hat
+Gabors
+overcoat
+shirt
+waistcoat
+pen
+board
+drawing
+sofas
+windows
+glasses
+trees
+forest
+wood
+adventure
+mother
+babies
+baby
+flowers
+harbour
+Vardos
+railway wagon
+music
+dinner
+dance
+song
+text
+shop
+drinks
+wine
+beer
+giters
+bench
+cottage

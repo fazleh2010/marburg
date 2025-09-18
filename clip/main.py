@@ -88,9 +88,9 @@ def main():
     model, preprocess = load_clip_model(device)
 
     # Define directories
-    image_dir = "images/Sinti-und-Roma/"
+    image_dir = "images/Zigeuner/SKULPTUR/"
     text_dir = "texts/"
-    output_dir = "images/Sinti-und-Roma/output/"
+    output_dir = "images/Zigeuner/SKULPTUR/output/"
     text_file = text_dir + "example.txt"
 
 

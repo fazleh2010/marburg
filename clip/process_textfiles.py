@@ -88,7 +88,7 @@ def find_similar_named_files(directory):
             second_file = directory+files[1]  # "file2.txt"
             print("First file:", first_file)
             print("Second file:", second_file)
-            merge_two_csv_files(first_file, second_file, directory+base_name+"_merged_files.csv")
+            merge_two_csv_files(second_file, first_file, directory+base_name+"_merged_files.csv")
 
 
 def valid_file(filename):
@@ -112,8 +112,8 @@ def process_all_txt_files(input_dir, output_dir):
 
 
 def main():
-    input_dir="/home/melahi/code/marburg/images/Sinti-und-Roma/"
-    output_dir="/home/melahi/code/marburg/images/Sinti-und-Roma/output/"
+    input_dir="/home/melahi/code/marburg/images/Zigeuner/SKULPTUR/"
+    output_dir="/home/melahi/code/marburg/images/Zigeuner/SKULPTUR/output/"
     process_all_txt_files(input_dir, output_dir)
 
     find_similar_named_files(output_dir)
