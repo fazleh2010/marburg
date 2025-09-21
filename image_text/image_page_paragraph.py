@@ -3,7 +3,8 @@ from PIL import Image
 import json
 
 # --- Settings ---
-folder = "/home/melahi/code/marburg/documents/extracted_images"
+dir="/home/melahi/code/documents/"
+folder = dir+"/extracted_images"
 prefix = "book_Bruggen_Israels_Machtelt_Piero_del"
 json_path = os.path.join(folder, f"{prefix}.json")
 
