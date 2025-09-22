@@ -3,6 +3,8 @@ import torch
 import csv
 from PIL import Image
 import clip
+import json
+
 
 """ python -m clip.main """
 
@@ -17,7 +19,6 @@ def read_text_file(file_path):
     """Read the text file and return a list of stripped lines."""
     with open(file_path, 'r') as file:
         texts = file.readlines()
-        print(texts)
     texts = [line.strip() for line in texts]
     return texts
 
@@ -89,27 +90,32 @@ def main():
     model, preprocess = load_clip_model(device)
 
     # Define directories
-    image_dir = "images/Zigeuner/SKULPTUR/"
-    text_dir = "texts/"
-    output_dir = "images/Zigeuner/SKULPTUR/output/"
-    text_file = text_dir + "example.txt"
-
-
+    dir = "/home/melahi/code/documents/"
+    image_dir = dir+"extracted_images_test"
+    output_dir = dir+"output/"
 
     # Supported image extensions
     valid_extensions = ('.jpg', '.jpeg', '.png', '.bmp', '.gif')
-
-    # Read texts from file
-    texts = read_text_file(text_file)
-    # print("Texts from file:", texts)
-
     # Get image files
     image_files = get_image_files(image_dir, valid_extensions)
     # print("images :", image_files)
 
-    # Process images and texts, compute image-text similarities
-    print(texts)
-    #probs = process_images_and_texts(image_files, texts, model, preprocess, device,output_dir)
+    # --- Load paragraphs from JSON ---
+    folder = dir + "extracted_images_test"
+    prefix = "book_Bruggen_Israels_Machtelt_Piero_del"
+    json_path = os.path.join(folder, f"{prefix}.json")
+
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    for page in data:
+        page_num = page.get("page")
+        paragraphs = page.get("paragraphs", [])
+        for para_index, texts in enumerate(paragraphs, start=1):
+            # Print full paragraph
+            print(f"Page {page_num}, Paragraph {para_index}: {texts}\n")
+            probs = process_images_and_texts(image_files, texts, model, preprocess, device, output_dir)
+            break
 
 
 if __name__ == "__main__":
