@@ -109,7 +109,7 @@ def main():
 
     # Process images and texts, compute image-text similarities
     print(texts)
-    #probs = process_images_and_texts(image_files, texts, model, preprocess, device,output_dir)
+    probs = process_images_and_texts(image_files, texts, model, preprocess, device,output_dir)
 
 
 if __name__ == "__main__":

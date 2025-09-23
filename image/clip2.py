@@ -113,6 +113,45 @@ def text_to_list(textsString):
     return unique_words
 
 
+def process_images_and_texts(image_files, texts, model, preprocess, device,output_dir,page_num,para_index,original_para):
+    """Process the images and texts, compute image-text similarities."""
+    for fileName in image_files:
+        print(f"Processing: {fileName}")
+        image = preprocess(Image.open(fileName)).unsqueeze(0).to(device)
+        text = clip.tokenize(texts).to(device)
+
+        with torch.no_grad():
+            # Compute features
+            image_features = model.encode_image(image)
+            text_features = model.encode_text(text)
+
+            # Compute logits and probabilities
+            logits_per_image, logits_per_text = model(image, text)
+            probs = logits_per_image.softmax(dim=-1).cpu().numpy()
+
+            # Print probabilities
+            index=0
+            content=""
+            for probList in probs:
+                print("texts_size:"+str(len(texts))+" probabiltyList:"+str(len(probList)))
+                data = []
+                for prob in probList:
+                    # print(str(index)+":"+texts[index]+":"+str(calculate_percentage(prob)))
+                    #line=str(index)+","+texts[index]+","+str(prob)+"\n"
+                    data.append([texts[index], prob])
+                    #content+=line
+                    index=index+1
+                # Write to a CSV file
+                data.sort(key=lambda x: x[1], reverse=True)
+                for item in data:
+                    print(f"{item[0]}\t{item[1]}")
+                outputfile =output_dir+ os.path.basename(fileName)+"_"+"pagenumber-"+str(page_num)+"_"+"paragraph-"+str(para_index)+"_"+".csv"
+                with open(outputfile, "w", newline="") as csv_file:
+                    writer = csv.writer(csv_file)
+                    writer.writerows(data)
+
+    return probs
+
 def main():
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -120,7 +159,7 @@ def main():
 
     dir = "/home/melahi/code/documents/"
     image_dir = os.path.join(dir, "extracted_images_test")
-    output_dir = os.path.join(dir, "output")
+    output_dir = "/home/melahi/code/documents/output/"
     os.makedirs(output_dir, exist_ok=True)
 
     valid_extensions = ('.jpg', '.jpeg', '.png', '.bmp', '.gif')
@@ -137,6 +176,7 @@ def main():
         paragraphs = page.get("paragraphs", [])
 
         for para_index, para in enumerate(paragraphs, start=1):
+            original_para=para
             para = re.sub(r'\s+', ' ', para)  # collapse all whitespace/newlines into single space
             para = re.sub(r'[^a-zA-Z0-9\s]', '', para)
             para = re.sub(r'\d+', '', para)
@@ -146,8 +186,7 @@ def main():
             #print(texts)
             print(f"\n=== Page {page_num}, Paragraph {para_index} ===")
             #print(para)
-            process_images_and_texts(image_files, texts, model, preprocess, device, output_dir)
-            break
+            process_images_and_texts(image_files, texts, model, preprocess, device, output_dir,page_num,para_index,original_para)
 
 
 if __name__ == "__main__":
