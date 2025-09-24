@@ -8,6 +8,7 @@ import nltk
 from nltk.corpus import stopwords
 import re
 from nltk.corpus import stopwords
+import numpy as np
 
 # Download stopwords (only the first time)
 nltk.download("stopwords")
@@ -135,6 +136,7 @@ def process_images_and_texts(image_files, texts, model, preprocess, device,outpu
             for probList in probs:
                 print("texts_size:"+str(len(texts))+" probabiltyList:"+str(len(probList)))
                 data = []
+                probabilityValue = {}
                 for prob in probList:
                     # print(str(index)+":"+texts[index]+":"+str(calculate_percentage(prob)))
                     #line=str(index)+","+texts[index]+","+str(prob)+"\n"
@@ -145,12 +147,25 @@ def process_images_and_texts(image_files, texts, model, preprocess, device,outpu
                 data.sort(key=lambda x: x[1], reverse=True)
                 for item in data:
                     print(f"{item[0]}\t{item[1]}")
-                outputfile =output_dir+ os.path.basename(fileName)+"_"+"pagenumber-"+str(page_num)+"_"+"paragraph-"+str(para_index)+"_"+".csv"
-                with open(outputfile, "w", newline="") as csv_file:
-                    writer = csv.writer(csv_file)
-                    writer.writerows(data)
+                    key = item[0]
+                    value = item[1]
+                    probabilityValue[key] = value  # add to the map
 
-    return probs
+                #outputfile =output_dir+ os.path.basename(fileName)+"_"+"pagenumber-"+str(page_num)+"_"+"paragraph-"+str(para_index)+"_"+".csv"
+                #with open(outputfile, "w", newline="") as csv_file:
+                    #    writer = csv.writer(csv_file)
+                    #    writer.writerows(data)
+
+    return fileName, probabilityValue
+
+# Custom encoder to handle numpy arrays & scalars
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()              # convert arrays to list
+        if isinstance(obj, (np.generic,)):
+            return obj.item()                # convert scalars (e.g. float32 → float)
+        return super().default(obj)
 
 def main():
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -171,6 +186,8 @@ def main():
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
+    final_results = []
+
     for page in data:
         page_num = page.get("page")
         paragraphs = page.get("paragraphs", [])
@@ -186,7 +203,23 @@ def main():
             #print(texts)
             print(f"\n=== Page {page_num}, Paragraph {para_index} ===")
             #print(para)
-            process_images_and_texts(image_files, texts, model, preprocess, device, output_dir,page_num,para_index,original_para)
+            fileName, probabilityValue= process_images_and_texts(image_files, texts, model, preprocess, device, output_dir,page_num,para_index,original_para)
+            # Convert ndarray to list if needed
+            # Convert numpy array → list, numpy scalars → python scalars
+
+            final_results.append({
+                "image": fileName,
+                "page": page_num,
+                "paragraph_number": para_index,
+                "original_text": original_para,
+                "results": probabilityValue
+            })
+
+    # Save to JSON
+    output_json = os.path.join(output_dir, f"{prefix}_results.json")
+    with open(output_json, "w", encoding="utf-8") as f:
+        json.dump(final_results, f, indent=2, ensure_ascii=False, cls=NumpyEncoder)
+    #print(f"✅ Results written to {output_json}"
 
 
 if __name__ == "__main__":
