@@ -183,18 +183,39 @@ def main():
 
     valid_extensions = ('.jpg', '.jpeg', '.png', '.bmp', '.gif')
 
-    # Step 1: find all json files
-    json_files = [f for f in os.listdir(image_dir) if f.endswith(".json")]
+    # Step 1: find all json files and sort by size (descending)
+    json_files = [
+        f for f in os.listdir(image_dir) if f.endswith(".json")
+    ]
+    json_files = sorted(
+        json_files,
+        key=lambda x: os.path.getsize(os.path.join(image_dir, x)),
+        reverse=True  # largest first
+    )
+
+    # Open the file and read lines
+    with open(base_dir + "piero/" + "piero.txt", "r", encoding="utf-8") as file:
+        lines = [line.strip() for line in file]
+
+    print(lines)
+
+    print(f"Found {len(json_files)} JSON files, sorted by size (largest first):")
+    for jf in json_files:
+        size_kb = os.path.getsize(os.path.join(image_dir, jf)) / 1024
+        print(f"  {jf} - {size_kb:.1f} KB")
 
     for json_file in json_files:
         prefix = os.path.splitext(json_file)[0]
         json_path = os.path.join(image_dir, json_file)
 
+        if prefix not in lines:
+            print(f"Skipping {json_file} because prefix '{prefix}' is not in piero.txt")
+            continue
+
         # Step 2: check language
         with open(json_path, "r", encoding="utf-8") as f:
             data = json.load(f)
 
-        # Collect all paragraphs as one big text for language detection
         all_text = " ".join(
             para for page in data for para in page.get("paragraphs", [])
         )
