@@ -9,6 +9,10 @@ from nltk.corpus import stopwords
 import re
 from nltk.corpus import stopwords
 import numpy as np
+from langdetect import detect, DetectorFactory
+
+DetectorFactory.seed = 0  # to make language detection deterministic
+
 
 # Download stopwords (only the first time)
 nltk.download("stopwords")
@@ -167,59 +171,96 @@ class NumpyEncoder(json.JSONEncoder):
             return obj.item()                # convert scalars (e.g. float32 → float)
         return super().default(obj)
 
+
 def main():
     device = "cuda" if torch.cuda.is_available() else "cpu"
-
     model, preprocess = load_clip_model(device)
 
-    dir = "/home/melahi/code/documents/"
-    image_dir = os.path.join(dir, "extracted_images_test")
-    output_dir = "/home/melahi/code/documents/output/"
+    base_dir = "/home/melahi/code/documents/"
+    image_dir = os.path.join(base_dir, "extracted_images")
+    output_dir = os.path.join(base_dir, "output")
     os.makedirs(output_dir, exist_ok=True)
 
     valid_extensions = ('.jpg', '.jpeg', '.png', '.bmp', '.gif')
-    image_files = get_image_files(image_dir, valid_extensions)
 
-    prefix = "book_Bruggen_Israels_Machtelt_Piero_del"
-    json_path = os.path.join(image_dir, f"{prefix}.json")
+    # Step 1: find all json files
+    json_files = [f for f in os.listdir(image_dir) if f.endswith(".json")]
 
-    with open(json_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    for json_file in json_files:
+        prefix = os.path.splitext(json_file)[0]
+        json_path = os.path.join(image_dir, json_file)
 
-    final_results = []
+        # Step 2: check language
+        with open(json_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
 
-    for page in data:
-        page_num = page.get("page")
-        paragraphs = page.get("paragraphs", [])
+        # Collect all paragraphs as one big text for language detection
+        all_text = " ".join(
+            para for page in data for para in page.get("paragraphs", [])
+        )
 
-        for para_index, para in enumerate(paragraphs, start=1):
-            original_para=para
-            para = re.sub(r'\s+', ' ', para)  # collapse all whitespace/newlines into single space
-            para = re.sub(r'[^a-zA-Z0-9\s]', '', para)
-            para = re.sub(r'\d+', '', para)
-            para = " ".join([word for word in para.split() if len(word) > 2])
-            para = clean_text(para)
-            texts = text_to_list(para)
-            #print(texts)
-            print(f"\n=== Page {page_num}, Paragraph {para_index} ===")
-            #print(para)
-            fileName, probabilityValue= process_images_and_texts(image_files, texts, model, preprocess, device, output_dir,page_num,para_index,original_para)
-            # Convert ndarray to list if needed
-            # Convert numpy array → list, numpy scalars → python scalars
+        if not all_text.strip():
+            print(f"⚠️ {prefix}: Empty JSON, skipping...")
+            continue
 
-            final_results.append({
-                "image": fileName,
-                "page": page_num,
-                "paragraph_number": para_index,
-                "original_text": original_para,
-                "results": probabilityValue
-            })
+        try:
+            lang = detect(all_text)
+        except:
+            print(f"⚠️ {prefix}: Could not detect language, skipping...")
+            continue
 
-    # Save to JSON
-    output_json = os.path.join(output_dir, f"{prefix}_results.json")
-    with open(output_json, "w", encoding="utf-8") as f:
-        json.dump(final_results, f, indent=2, ensure_ascii=False, cls=NumpyEncoder)
-    #print(f"✅ Results written to {output_json}"
+        if lang not in ["en"]:  # only English or German
+            print(f"⚠️ {prefix}: Detected language '{lang}', skipping...")
+            continue
+
+        print(f"\n🔎 Processing prefix: {prefix} | Language: {lang}")
+
+        # Step 3: get matching images
+        image_files = [
+            os.path.join(image_dir, f) for f in os.listdir(image_dir)
+            if f.startswith(prefix) and f.lower().endswith(valid_extensions)
+        ]
+
+        if not image_files:
+            print(f"⚠️ {prefix}: No images found, skipping...")
+            continue
+
+        final_results = []
+
+        for page in data:
+            page_num = page.get("page")
+            paragraphs = page.get("paragraphs", [])
+
+            for para_index, para in enumerate(paragraphs, start=1):
+                original_para = para
+                para = re.sub(r'\s+', ' ', para)
+                para = re.sub(r'[^a-zA-Z0-9\s]', '', para)
+                para = re.sub(r'\d+', '', para)
+                para = " ".join([word for word in para.split() if len(word) > 2])
+                para = clean_text(para)
+                texts = text_to_list(para)
+
+                print(f"\n=== {prefix} | Page {page_num}, Paragraph {para_index} ===")
+
+                fileName, probabilityValue = process_images_and_texts(
+                    image_files, texts, model, preprocess, device,
+                    output_dir, page_num, para_index, original_para
+                )
+
+                final_results.append({
+                    "image": fileName,
+                    "page": page_num,
+                    "paragraph_number": para_index,
+                    "original_text": original_para,
+                    "results": probabilityValue
+                })
+
+        # Step 4: write results
+        output_json = os.path.join(output_dir, f"{prefix}_results.json")
+        with open(output_json, "w", encoding="utf-8") as f:
+            json.dump(final_results, f, indent=2, ensure_ascii=False, cls=NumpyEncoder)
+        print(f"✅ Results saved: {output_json}")
+
 
 
 if __name__ == "__main__":
