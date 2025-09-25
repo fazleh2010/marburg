@@ -5,8 +5,8 @@ from io import BytesIO
 import json
 
 # Input folder containing PDFs
-pdf_dir = "/home/melahi/code/documents/corpus_texts/"
-output_folder = "/home/melahi/code/documents/extracted_images"
+pdf_dir = "/home/melahi/code/documents/corpus_texts_test/"
+output_folder = "/home/melahi/code/documents/extracted_images_test"
 os.makedirs(output_folder, exist_ok=True)
 
 # Loop through all PDF files in the folder

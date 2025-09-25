@@ -183,14 +183,14 @@ def main():
 
     valid_extensions = ('.jpg', '.jpeg', '.png', '.bmp', '.gif')
 
-    # Step 1: find all json files and sort by size (descending)
+    # Step 1: find all JSON files and sort by size (smallest first)
     json_files = [
         f for f in os.listdir(image_dir) if f.endswith(".json")
     ]
+
     json_files = sorted(
         json_files,
-        key=lambda x: os.path.getsize(os.path.join(image_dir, x)),
-        reverse=True  # largest first
+        key=lambda x: os.path.getsize(os.path.join(image_dir, x))  # ascending → smallest first
     )
 
     # Open the file and read lines

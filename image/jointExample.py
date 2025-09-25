@@ -7,7 +7,7 @@ model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
 processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
 
 # Load a local image
-image_path = "/home/melahi/code/documents/extracted_images_test/dog_image.jpg"
+image_path = "/home/melahi/code/documents/dog_image.jpg"
 image = Image.open(image_path).convert("RGB")
 
 # Define three paragraphs

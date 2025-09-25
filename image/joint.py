@@ -17,7 +17,7 @@ def clean_text(text):
     # Additional cleaning rules if needed
     return text.strip().lower()
 
-def split_text(text, max_tokens=77):
+def split_text(text, max_tokens=1000):
     """
     Split text into chunks of <= max_tokens words (CLIP limit)
     """
@@ -78,15 +78,25 @@ def main():
     model, processor = load_clip_model(device)
 
     base_dir = "/home/melahi/code/documents/"
-    image_dir = os.path.join(base_dir, "extracted_images_test")
+    image_dir = os.path.join(base_dir, "extracted_images")
     output_dir = os.path.join(base_dir, "output")
     os.makedirs(output_dir, exist_ok=True)
 
     valid_extensions = ('.jpg', '.jpeg', '.png', '.bmp', '.gif')
 
-    # Step 1: find all JSON files and sort by size (largest first)
+    # Step 1: find all JSON files and sort by size (smallest first)
     json_files = [f for f in os.listdir(image_dir) if f.endswith(".json")]
 
+    json_files = sorted(
+        json_files,
+        key=lambda x: os.path.getsize(os.path.join(image_dir, x))  # ascending = smallest first
+    )
+
+    # Open the file and read lines
+    with open(base_dir + "piero/" + "piero.txt", "r", encoding="utf-8") as file:
+        lines = [line.strip() for line in file]
+
+    print(lines)
 
     print(f"Found {len(json_files)} JSON files, sorted by size (largest first):")
     for jf in json_files:
@@ -96,6 +106,10 @@ def main():
     for json_file in json_files:
         prefix = os.path.splitext(json_file)[0]
         json_path = os.path.join(image_dir, json_file)
+
+        if prefix not in lines:
+            print(f"Skipping {json_file} because prefix '{prefix}' is not in piero.txt")
+            continue
 
 
         # Step 2: check language
@@ -140,9 +154,12 @@ def main():
 
             for para_index, para in enumerate(paragraphs, start=1):
                 original_para = para
+                #para = re.sub(r'\s+', ' ', para)
+                #para = re.sub(r'[^a-zA-Z0-9\s]', '', para)
+                #para = re.sub(r'\d+', '', para)
                 texts = split_text(para)  # Split into <=77 token chunks
-
-                print(f"\n=== {prefix} | Page {page_num}, Paragraph {para_index} ==="+"\n"+para)
+                print(para)
+                print(f"\n=== {prefix} | Page {page_num}, Paragraph {para_index} ==="+"\n"+str(texts))
 
                 fileName, probabilityValue = process_images_and_texts(
                     image_files, texts, model, processor, device,
@@ -163,6 +180,68 @@ def main():
             json.dump(final_results, f, indent=2, ensure_ascii=False)
         print(f"✅ Results saved: {output_json}")
 
+def extract_best_paragraphs(input_json: str, output_json: str) -> None:
+    """
+    Extracts the best paragraph (highest similarity) per image from a JSON file
+    and saves the results to a new JSON file.
+
+    Args:
+        input_json (str): Path to input JSON file.
+        output_json (str): Path to save the filtered JSON file.
+    """
+    # Load data
+    with open(input_json, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    # Dictionary to store the best paragraph per image
+    best_paragraphs = {}
+
+    for entry in data:
+        paragraph_text = entry["original_text"]
+        page = entry["page"]
+        para_num = entry["paragraph_number"]
+
+        # Each entry has a "results" list with multiple images and similarity scores
+        for res in entry["results"]:
+            image = res["image"]
+            similarity = res["similarity"]
+
+            # Keep the paragraph with the highest similarity for each image
+            if image not in best_paragraphs or similarity > best_paragraphs[image]["similarity"]:
+                best_paragraphs[image] = {
+                    "page": page,
+                    "paragraph_number": para_num,
+                    "paragraph": paragraph_text,
+                    "similarity": similarity
+                }
+
+    # Convert dictionary to a list for JSON output
+    output_data = [
+        {
+            "image": image,
+            "page": info["page"],
+            "paragraph_number": info["paragraph_number"],
+            "paragraph": info["paragraph"],
+            "similarity": info["similarity"]
+        }
+        for image, info in best_paragraphs.items()
+    ]
+
+    # Write to JSON file
+    with open(output_json, "w", encoding="utf-8") as f:
+        json.dump(output_data, f, indent=2, ensure_ascii=False)
+
+    print(f"✅ Best paragraphs per image saved to: {output_json}")
 
 if __name__ == "__main__":
     main()
+    output_dir = "/home/melahi/code/documents/output/"
+
+    for filename in os.listdir(output_dir):
+        if filename.endswith("_results.json") and not filename.endswith("_best.json"):
+            input_json = os.path.join(output_dir, filename)
+            # Insert "_best" before the .json extension
+            base, ext = os.path.splitext(filename)
+            output_json = os.path.join(output_dir, f"{base}_best{ext}")
+            extract_best_paragraphs(input_json, output_json)
+
